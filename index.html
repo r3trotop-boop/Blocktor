@@ -6,88 +6,83 @@
 <title>Blocktor - Build & Play</title>
 <style>
   :root {
-    --blocktor-blue: #3E638A;
-    --blocktor-dark: #122438;
-    --panel-bg: #FFFFFF;
-    --border-blue: #85A3C5;
-    --green-btn: #41A32F;
-    --green-btn-border: #2B6E1F;
-    --orange-gradient: linear-gradient(to bottom, #FFAE19, #FF9000);
-    --blue-gradient: linear-gradient(to bottom, #5B81A9, #3E638A);
-    --btn-gradient: linear-gradient(to bottom, #FFFFFF 0%, #E6E6E6 100%);
-    --btn-gradient-hover: linear-gradient(to bottom, #FFFFFF 0%, #D9D9D9 100%);
+    --blocktor-blue: #4A6E91;
+    --blocktor-dark: #1A2E40;
+    --panel-bg: #EEF2F7;
+    --border-blue: #92A8C0;
+    --green-btn: #3FA62E;
+    --green-btn-border: #2D7A21;
   }
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #A6C4E8;
-    color: #111;
-    font-size: 13px;
-    line-height: 1.4;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #A9C2E3;
+    color: #000;
+    font-size: 12px;
   }
 
+  /* Centered Vintage Frame Wrapper */
   .site-container {
-    width: 960px;
-    margin: 20px auto;
-    background: white;
-    border: 3px solid var(--blocktor-dark);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    min-height: 90vh;
-    border-radius: 6px;
-    overflow: hidden;
+    width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-left: 2px solid var(--blocktor-blue);
+    border-right: 2px solid var(--blocktor-blue);
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
-  /* Header Banner */
+  /* Header Branding Banner */
   .header-banner {
-    background: var(--orange-gradient);
-    height: 105px;
+    background: linear-gradient(to right, #FFA500, #FFD700);
+    height: 95px;
     position: relative;
     display: flex;
     align-items: center;
-    padding: 0 25px;
-    border-bottom: 3px solid #C66A00;
+    padding: 0 20px;
+    border-bottom: 3px solid #C67A00;
     box-sizing: border-box;
   }
 
   .logo {
     font-family: 'Arial Black', Impact, sans-serif;
     font-size: 46px;
-    color: #D31E1E;
-    text-shadow: 2px 2px 0px #fff, -2px -2px 0px #fff, 4px 4px 6px rgba(0,0,0,0.35);
-    letter-spacing: -1px;
+    color: #C82323;
+    text-shadow: 2px 2px 0px #fff, -2px -2px 0px #fff, 3px 3px 5px rgba(0,0,0,0.35);
+    letter-spacing: -2px;
   }
 
   .play-now-btn {
     position: absolute;
-    right: 25px;
-    top: 28px;
-    background: linear-gradient(to bottom, #52C43C, #3F962E);
+    right: 20px;
+    top: 25px;
+    background: linear-gradient(#52BE33, #3FA62E);
     border: 2px solid var(--green-btn-border);
     color: white;
     font-weight: bold;
     font-size: 18px;
-    padding: 10px 26px;
+    padding: 8px 24px;
     cursor: pointer;
     border-radius: 5px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 3px 6px rgba(0,0,0,0.2);
-    transition: transform 0.1s;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 2px 4px rgba(0,0,0,0.25);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
   }
-  .play-now-btn:hover { background: linear-gradient(to bottom, #59D641, #47A834); }
-  .play-now-btn:active { transform: translateY(1px); box-shadow: inset 0 2px 4px rgba(0,0,0,0.4); }
+  .play-now-btn:hover { background: #348A25; }
 
   /* Navigation Tabs Bar */
   .main-navbar {
-    background: var(--blue-gradient);
-    padding: 0 15px;
+    background: var(--blocktor-blue);
+    background: linear-gradient(to bottom, #5A82A6, var(--blocktor-blue));
+    padding: 6px 15px;
     display: flex;
+    align-items: center;
     gap: 4px;
     border-bottom: 2px solid var(--blocktor-dark);
     box-sizing: border-box;
-    height: 38px;
-    align-items: center;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
   }
 
   .main-navbar button {
@@ -97,107 +92,100 @@
     font-weight: bold;
     font-size: 13px;
     cursor: pointer;
-    padding: 8px 16px;
+    padding: 4px 14px;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
-    transition: background 0.2s;
-    border-radius: 3px;
   }
 
   .main-navbar button:hover {
     background: rgba(255,255,255,0.15);
+    border-radius: 3px;
+    text-decoration: underline;
   }
 
-  .main-navbar span { color: #AEC8E6; font-weight: bold; opacity: 0.6; }
+  .main-navbar span { color: #BCD2EE; font-weight: bold; }
 
-  /* 2-Column Core Layout Panels */
+  /* 2-Column Core Layout Frame */
   .main-layout {
     display: flex;
     padding: 20px;
     gap: 20px;
     box-sizing: border-box;
+    flex: 1;
   }
 
   .left-column {
-    width: 610px;
+    width: 570px;
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
 
   .right-column {
-    width: 290px;
+    width: 270px;
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
 
-  /* Refined Panels Styling */
+  /* Structural Panel System */
   .panel {
     border: 1px solid var(--border-blue);
-    background: var(--panel-bg);
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(62,99,138,0.1);
-    overflow: hidden;
+    background: #FFF;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   }
 
   .panel-header {
-    background: var(--blue-gradient);
+    background: linear-gradient(to bottom, #608FB8, var(--blocktor-blue));
     color: white;
-    padding: 8px 14px;
+    padding: 7px 12px;
     font-weight: bold;
     font-size: 14px;
-    letter-spacing: 0.5px;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
     border-bottom: 1px solid var(--blocktor-dark);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
   }
 
   .panel-body {
-    padding: 16px;
+    padding: 15px;
   }
 
-  /* Polished Input Form Buttons */
+  /* Retro Shiny Bevel Buttons */
   .retro-btn {
-    background: var(--btn-gradient);
-    border: 1px solid #999;
-    padding: 6px 16px;
+    background: linear-gradient(#FFF, #E2E2E2);
+    border: 1px solid #777;
+    padding: 5px 16px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 12px;
-    border-radius: 4px;
-    color: #333;
-    box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(0,0,0,0.1);
+    font-size: 11px;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
   }
-  .retro-btn:hover { background: var(--btn-gradient-hover); border-color: #777; color: #111; }
-  .retro-btn:active { box-shadow: inset 0 1px 3px rgba(0,0,0,0.15); }
+  .retro-btn:hover { background: linear-gradient(#FFF, #D4D4D4); border-color: #555; }
 
-  /* Tab Control Links */
+  /* Sub-tab Interface Toggles */
   .auth-tabs {
     display: flex;
-    gap: 6px;
-    margin-bottom: 16px;
-    border-bottom: 2px solid #E1E6EB;
-    padding-bottom: 6px;
+    gap: 4px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--border-blue);
+    padding-bottom: 1px;
   }
   .auth-tab-btn {
     background: #EAEAEA;
     border: 1px solid #CCC;
     border-bottom: none;
-    padding: 6px 16px;
+    padding: 5px 15px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: bold;
-    border-radius: 4px 4px 0 0;
-    color: #666;
-    transition: all 0.2s;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
   }
-  .auth-tab-btn:hover { background: #F2F2F2; color: #333; }
   .auth-tab-btn.active {
     background: var(--blocktor-blue);
     color: white;
-    border-color: var(--blocktor-blue);
-    margin-bottom: -8px;
-    padding-bottom: 8px;
+    border-color: var(--border-blue);
+    padding-bottom: 6px;
+    margin-bottom: -2px;
   }
 
   .auth-subview { display: none; }
@@ -209,146 +197,129 @@
   .auth-field-block label {
     font-weight: bold;
     display: block;
-    margin-bottom: 5px;
-    color: #444;
+    margin-bottom: 4px;
+    color: #333;
   }
   .auth-field-block input {
-    padding: 8px;
+    padding: 5px;
     width: 220px;
-    border: 1px solid #A5BCCE;
-    border-radius: 4px;
+    border: 1px solid #7F9DB9;
     box-sizing: border-box;
-    font-size: 13px;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .auth-field-block input:focus {
-    border-color: var(--blocktor-blue);
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05), 0 0 0 3px rgba(62,99,138,0.2);
+    font-size: 12px;
   }
 
   .error-text {
-    color: #D31E1E;
+    color: #CC0000;
     font-weight: bold;
-    margin-top: 8px;
+    margin-top: 10px;
     font-size: 12px;
+    background: #FFF0F0;
     padding: 6px 10px;
-    background: #FCE8E8;
-    border-left: 3px solid #D31E1E;
-    border-radius: 0 4px 4px 0;
+    border: 1px solid #FFAAAA;
+    display: inline-block;
   }
 
-  /* 2D Character Render Canvas Graphics Frame */
+  /* 2D Avatar Rendering Studio Canvas Look */
   .avatar-container {
     display: flex;
-    gap: 24px;
+    gap: 25px;
     align-items: center;
-    background: linear-gradient(to bottom, #F4F7FA, #EBF1F6);
+    background: #EEF2F7;
     padding: 20px;
     border: 1px dashed var(--border-blue);
-    border-radius: 4px;
   }
 
   .avatar-frame {
-    width: 120px;
-    height: 150px;
+    width: 110px;
+    height: 140px;
     background: #E5E9F0;
-    border: 2px solid #85A3C5;
+    border: 2px solid #888;
     position: relative;
-    border-radius: 4px;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.15);
   }
 
   .part {
     position: absolute;
-    border: 1px solid #111;
+    border: 1px solid #222;
     box-sizing: border-box;
   }
   
-  .p-head { width: 30px; height: 30px; top: 10px; left: 45px; border-radius: 2px; }
-  .p-torso { width: 46px; height: 48px; top: 40px; left: 37px; }
+  .p-head { width: 26px; height: 26px; top: 8px; left: 42px; }
+  .p-torso { width: 42px; height: 44px; top: 34px; left: 34px; }
   
-  .arm-wrapper { position: absolute; width: 16px; height: 46px; top: 40px; }
-  .left-arm-pos { left: 20px; }
-  .right-arm-pos { left: 84px; }
+  .arm-wrapper { position: absolute; width: 14px; height: 42px; top: 34px; }
+  .left-arm-pos { left: 18px; }
+  .right-arm-pos { left: 78px; }
   
-  .sleeve { width: 16px; height: 14px; border: 1px solid #111; border-bottom: none; top: 0; position: absolute; }
-  .bare-arm { width: 16px; height: 32px; border: 1px solid #111; top: 14px; position: absolute; }
+  .sleeve { width: 14px; height: 12px; border: 1px solid #222; border-bottom: none; top: 0; position: absolute; }
+  .bare-arm { width: 14px; height: 30px; border: 1px solid #222; top: 12px; position: absolute; }
 
-  .p-lleg { width: 22px; height: 50px; top: 88px; left: 37px; }
-  .p-rleg { width: 22px; height: 50px; top: 88px; left: 61px; }
+  .p-lleg { width: 20px; height: 46px; top: 78px; left: 34px; }
+  .p-rleg { width: 20px; height: 46px; top: 78px; left: 56px; }
 
-  /* Subview App States Router Pages */
-  .view-section { display: none; }
-  .view-section.active-view { display: block; }
-
-  /* Clean Item Display Grid Cards Layout */
+  /* Catalog Shop Grid System */
   .catalog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
   }
 
   .item-card {
-    border: 1px solid #D5E1ED;
+    border: 1px solid #D2D2D2;
     padding: 12px;
     text-align: center;
-    background: #FAFAFA;
-    border-radius: 4px;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .item-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    border-color: var(--border-blue);
+    background: #FDFDFD;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
   }
 
   .item-thumb {
-    height: 75px;
-    background: #EBF1F6;
+    height: 70px;
+    background: #F0F4F8;
     margin-bottom: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    border: 1px solid #D1DFEC;
-    border-radius: 3px;
+    border: 1px solid #DDD;
+    font-size: 11px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
   }
 
-  /* Full Screen Overlay Sandbox Loading Box Popup */
+  /* Game Matchmaking Emulator Screen */
   .game-overlay {
     display: none;
     position: fixed;
     top:0; left:0; width:100%; height:100%;
-    background: rgba(18, 36, 56, 0.75);
-    backdrop-filter: blur(3px);
+    background: rgba(0,0,0,0.65);
     z-index: 9999;
     align-items: center;
     justify-content: center;
   }
   .game-window {
     background: #FFF;
-    padding: 24px;
+    padding: 25px;
     border: 4px solid var(--blocktor-blue);
     text-align: center;
     width: 420px;
-    border-radius: 6px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
   }
+
+  /* Welcome Text Layout */
+  .welcome-area h2 { margin: 0 0 5px 0; color: #1C354E; font-size: 18px; }
+  .welcome-area p { margin: 4px 0; font-size: 13px; color: #444; }
 </style>
 </head>
 <body>
 
 <div class="site-container">
 
-  <!-- Header Branding Banner -->
+  <!-- Header Banner Section -->
   <div class="header-banner">
     <div class="logo">BLOCKTOR</div>
     <button class="play-now-btn" onclick="navigateTo('games')">PLAY NOW</button>
   </div>
 
-  <!-- Main Navigation Tabs Header Links -->
+  <!-- Main System Nav Tabs Header -->
   <div class="main-navbar">
     <button onclick="navigateTo('home')">My Blocktor</button>
     <span>|</span>
@@ -359,19 +330,45 @@
     <button onclick="navigateTo('stats')">Blocktor Stats</button>
   </div>
 
-  <!-- Main Multi-Column Split Framework Layout -->
+  <!-- Multi-Column Layout Frame -->
   <div class="main-layout">
     
-    <!-- LEFT WINDOW VIEWS CHANNELS CONTENT PANE -->
+    <!-- LEFT CONTENT FEED -->
     <div class="left-column">
       
-      <!-- SUBPAGE WINDOW 1: LOGIN HOOK HOME FRAME -->
+      <!-- SUBPAGE 1: HOME CONTROLLER GATEWAY -->
       <div id="page-home" class="view-section active-view">
         <div class="panel">
-          <div class="panel-header">Blocktor Gateway Portal System</div>
+          <div class="panel-header">Blocktor Account Access Panel</div>
           <div class="panel-body">
             
-            <!-- Dual Registration Subtabs Panels Forms State Controller Wrapper -->
+            <!-- Dual Entry Forms Selection Tab Wrapper Buttons -->
             <div id="auth-panel-controls">
               <div class="auth-tabs">
                 <button id="tab-login" class="auth-tab-btn active" onclick="switchAuthTab('login')">Log In</button>
+                <button id="tab-signup" class="auth-tab-btn" onclick="switchAuthTab('signup')">Sign Up</button>
+              </div>
+
+              <!-- VIEW A: LOGIN COMPONENT FORM -->
+              <div id="subview-login" class="auth-subview active">
+                <div class="auth-field-block">
+                  <label>Username:</label>
+                  <input type="text" id="loginUser" placeholder="Enter username...">
+                </div>
+                <div class="auth-field-block">
+                  <label>Password:</label>
+                  <input type="password" id="loginPass" placeholder="Enter password...">
+                </div>
+                <button class="retro-btn" onclick="loginAction()">Log In</button>
+                <div id="login-error-msg" class="error-text" style="display:none;"></div>
+              </div>
+
+              <!-- VIEW B: REGISTER NEW CREATOR SUBVIEW -->
+              <div id="subview-signup" class="auth-subview">
+                <div class="auth-field-block">
+                  <label>Create Username:</label>
+                  <input type="text" id="signupUser" placeholder="Choose username...">
+                </div>
+                <div class="auth-field-block">
+                  <label>Create Password:</label>
+
