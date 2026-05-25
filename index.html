@@ -93,8 +93,6 @@
     text-decoration: underline;
   }
 
-  .main-navbar span { color: #BCD2EE; align-self: center; }
-
   /* 2-Column Panel Layout */
   .main-layout {
     display: flex;
@@ -134,15 +132,6 @@
     padding: 12px;
   }
 
-  /* Form Elements */
-  .login-box input {
-    padding: 4px;
-    border: 1px solid #7F9DB9;
-    margin-bottom: 8px;
-    width: 180px;
-    display: block;
-  }
-
   .retro-btn {
     background: linear-gradient(#FFF, #DCDCDC);
     border: 1px solid #777;
@@ -153,7 +142,7 @@
   }
   .retro-btn:hover { background: #EAEAEA; }
 
-  /* Dynamic Avatar Rendering System */
+  /* Advanced Avatar Rendering Engine with Short Sleeve Support */
   .avatar-container {
     display: flex;
     gap: 20px;
@@ -164,8 +153,8 @@
   }
 
   .avatar-frame {
-    width: 100px;
-    height: 130px;
+    width: 110px;
+    height: 140px;
     background: #E5E9F0;
     border: 1px solid #999;
     position: relative;
@@ -174,51 +163,36 @@
   .part {
     position: absolute;
     border: 1px solid #222;
-    background: #F3CA30; /* Default Skin Tint */
     box-sizing: border-box;
   }
-  .p-head { width: 24px; height: 24px; border-radius: 50%; top: 8px; left: 38px; }
-  .p-torso { width: 40px; height: 42px; top: 34px; left: 30px; background: #E22127; }
-  .p-larm { width: 14px; height: 40px; top: 34px; left: 14px; }
-  .p-rarm { width: 14px; height: 40px; top: 34px; left: 72px; }
-  .p-lleg { width: 18px; height: 44px; top: 78px; left: 30px; background: #226622; }
-  .p-rleg { width: 18px; height: 44px; top: 78px; left: 50px; background: #226622; }
+  
+  .p-head { width: 26px; height: 26px; top: 8px; left: 42px; }
+  .p-torso { width: 42px; height: 44px; top: 34px; left: 34px; }
+  
+  /* Complex Split Arm Architecture */
+  .arm-wrapper { position: absolute; width: 14px; height: 42px; top: 34px; }
+  .left-arm-pos { left: 18px; }
+  .right-arm-pos { left: 78px; }
+  
+  .sleeve { width: 14px; height: 12px; border: 1px solid #222; border-bottom: none; top: 0; position: absolute; }
+  .bare-arm { width: 14px; height: 30px; border: 1px solid #222; top: 12px; position: absolute; }
+
+  /* Leg Elements */
+  .p-lleg { width: 20px; height: 46px; top: 78px; left: 34px; }
+  .p-rleg { width: 20px; height: 46px; top: 78px; left: 56px; }
 
   /* App Views Router toggles */
   .view-section { display: none; }
   .view-section.active-view { display: block; }
 
-  /* Games Grid Row Cards */
-  .game-card {
-    display: flex;
-    gap: 15px;
-    border-bottom: 1px dashed #CCC;
-    padding-bottom: 12px;
-    margin-bottom: 12px;
-  }
-  .game-card:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-
-  .game-thumb {
-    width: 90px;
-    height: 70px;
-    background: #CCD7E6;
-    border: 1px solid var(--border-blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #4A6E91;
-  }
-
   /* Catalog Store Items */
-  .catalog-flex {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 15px;
   }
 
   .item-card {
-    width: 120px;
     border: 1px solid #CCC;
     padding: 10px;
     text-align: center;
@@ -236,7 +210,7 @@
     border: 1px solid #DDD;
   }
 
-  /* Live Action Alert Launcher Overlay */
+  /* Game Launcher Overlay */
   .game-overlay {
     display: none;
     position: fixed;
@@ -253,17 +227,6 @@
     text-align: center;
     width: 400px;
   }
-
-  .stat-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .stat-table th, .stat-table td {
-    border: 1px solid #CCC;
-    padding: 6px;
-    text-align: left;
-  }
-  .stat-table th { background: #E9EEF4; }
 </style>
 </head>
 <body>
@@ -295,8 +258,6 @@
       
       <!-- VIEW 1: HOME PAGE -->
       <div id="page-home" class="view-section active-view">
-        
-        <!-- Authentication Panel Switcher -->
         <div class="panel" style="margin-bottom: 15px;">
           <div class="panel-header">Member Login</div>
           <div class="panel-body">
@@ -304,41 +265,43 @@
             <!-- Login State Container Form -->
             <div id="login-form">
               <label style="font-weight: bold; display:block; margin-bottom:4px;">Username:</label>
-              <input type="text" id="userInput" value="BlocktorPlayer">
+              <input type="text" id="userInput" value="BlocktorPlayer" style="padding:4px; margin-bottom:8px; width:180px; display:block;">
               <button class="retro-btn" onclick="loginAction()">Login</button>
             </div>
 
             <!-- Logged In Profile Panel Interface -->
             <div id="profile-dashboard" class="avatar-container" style="display: none;">
+              
+              <!-- Refined Character Canvas Structure -->
               <div class="avatar-frame">
                 <div class="part p-head" id="av-head"></div>
                 <div class="part p-torso" id="av-torso"></div>
-                <div class="part p-larm" id="av-larm"></div>
-                <div class="part p-rarm" id="av-rarm"></div>
+                
+                <!-- Left Arm Set -->
+                <div class="arm-wrapper left-arm-pos">
+                  <div class="sleeve" id="av-larm-sleeve"></div>
+                  <div class="bare-arm" id="av-larm-bare"></div>
+                </div>
+
+                <!-- Right Arm Set -->
+                <div class="arm-wrapper right-arm-pos">
+                  <div class="sleeve" id="av-rarm-sleeve"></div>
+                  <div class="bare-arm" id="av-rarm-bare"></div>
+                </div>
+
                 <div class="part p-lleg" id="av-lleg"></div>
                 <div class="part p-rleg" id="av-rleg"></div>
               </div>
+
               <div>
                 <h2 style="margin:0 0 8px 0;" id="welcome-msg">Welcome Explorer!</h2>
-                <p style="margin: 4px 0;"><strong>Tokens:</strong> <span id="token-count">25</span> Tk</p>
-                <p style="margin: 4px 0;"><strong>Rank:</strong> Builder</p>
+                <p style="margin: 4px 0;"><strong>Tokens:</strong> <span id="token-count">50</span> Tk</p>
                 <button class="retro-btn" style="margin-top:8px;" onclick="logoutAction()">Logout</button>
               </div>
             </div>
 
           </div>
         </div>
-
-        <!-- Call to Action Banner Box -->
-        <div class="panel">
-          <div class="panel-header">The Free Online Block Building Game</div>
-          <div class="panel-body" style="background: #F4F7FA;">
-            <p style="font-size: 13px; font-weight: bold; color: #B02020; margin-top: 0;">Construct worlds, script blocks, and battle rivals.</p>
-            <p>Customize your virtual player configuration avatar using the currency earned daily just for checking into your control panel portal dashboard.</p>
-            <button class="retro-btn" style="background: var(--green-btn); color:white; border-color: var(--green-btn-border);" onclick="navigateTo('games')">Browse Playable Maps</button>
-          </div>
-        </div>
-
       </div>
 
       <!-- VIEW 2: GAMES CHANNEL LIST -->
@@ -346,16 +309,34 @@
         <div class="panel">
           <div class="panel-header">Public Game Servers</div>
           <div class="panel-body">
-            
-            <div class="game-card">
-              <div class="game-thumb">MAP BRICK</div>
-              <div>
-                <h3 style="margin: 0 0 4px 0; color: #1A3E60; cursor:pointer;" onclick="launchGame('Brick Battle Arena')">Brick Battle Arena (Classic)</h3>
-                <p style="margin: 4px 0; color: #444;">Classic multi-team rocket and trowel weapon survival crossroad world map.</p>
-                <span style="color:#777; font-size:11px;">Host: Admin | Total Plays: 48,291</span>
-              </div>
-            </div>
+            <p>Click a server destination to connect using your customized character skin layout properties.</p>
+            <button class="retro-btn" onclick="launchGame('Crossroads Combat Arena')">Join Crossroads Server</button>
+          </div>
+        </div>
+      </div>
 
-            <div class="game-card">
-              <div class="game-thumb">MAP BRICK</div>
-              <div>
+      <!-- VIEW 3: ITEM SHOP ASSET CATALOG -->
+      <div id="page-catalog" class="view-section">
+        <div class="panel">
+          <div class="panel-header">Blocktor Clothing & Skin Customization Shop</div>
+          <div class="panel-body">
+            <p style="margin-top: 0; color:#555; margin-bottom: 12px;">Equipping custom assets clears past colors. If you wear real clothing, you can paint your remaining avatar body parts completely skin-toned!</p>
+            
+            <div class="catalog-grid">
+              
+              <!-- CLOTHING ITEM: SHIRT -->
+              <div class="item-card">
+                <div class="item-thumb" style="background:#3B5998; color:#fff; font-size:11px;">Shirt Asset</div>
+                <strong>Blue Short-Sleeve</strong>
+                <p style="color: #3FA62E; font-weight: bold; margin: 4px 0;">5 Tokens</p>
+                <button class="retro-btn" onclick="buyAsset('shirt', '#3B5998', 5)">Equip Shirt</button>
+              </div>
+
+              <!-- CLOTHING ITEM: PANTS -->
+              <div class="item-card">
+                <div class="item-thumb" style="background:#111; color:#fff; font-size:11px;">Pants Asset</div>
+                <strong>Classic Black Pants</strong>
+                <p style="color: #3FA62E; font-weight: bold; margin: 4px 0;">5 Tokens</p>
+                <button class="retro-btn" onclick="buyAsset('pants', '#111', 5)">Equip Pants</button>
+              </div>
+
