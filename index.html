@@ -17,8 +17,7 @@
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #A9C2E3 linear-gradient(to bottom, #779ECB, #A9C2E3) no-repeat top center;
-    background-size: 100% 200px;
+    background: #A9C2E3;
     color: #000;
     font-size: 12px;
   }
@@ -42,6 +41,7 @@
     align-items: center;
     padding: 0 20px;
     border-bottom: 2px solid #C67A00;
+    box-sizing: border-box;
   }
 
   .logo {
@@ -76,6 +76,7 @@
     display: flex;
     gap: 2px;
     border-bottom: 1px solid var(--blocktor-dark);
+    box-sizing: border-box;
   }
 
   .main-navbar button {
@@ -93,11 +94,14 @@
     text-decoration: underline;
   }
 
+  .main-navbar span { color: #BCD2EE; align-self: center; }
+
   /* 2-Column Panel Layout */
   .main-layout {
     display: flex;
     padding: 15px;
     gap: 15px;
+    box-sizing: border-box;
   }
 
   .left-column {
@@ -179,6 +183,7 @@
     padding: 4px;
     width: 180px;
     border: 1px solid #7F9DB9;
+    box-sizing: border-box;
   }
 
   /* Moderation Error Indicator */
@@ -300,7 +305,7 @@
   <!-- Multi-Column Layout Grid -->
   <div class="main-layout">
     
-    <!-- LEFT FUNCTIONAL CONTENT CHANNEL -->
+    <!-- LEFT CONTENT CHANNEL -->
     <div class="left-column">
       
       <!-- PAGE VIEW 1: GATEWAY HOME PAGE -->
@@ -345,24 +350,24 @@
               </div>
             </div>
 
-            <!-- DYNAMIC CONTROL PANEL: LOGGED IN PROFILE SIDEBAR REPLACEMENT -->
+            <!-- PROFILE PANEL DISPLAY -->
             <div id="profile-dashboard" class="avatar-container" style="display: none;">
-              
-              <!-- Character Canvas Structure Short Sleeve Engine Layout Node -->
               <div class="avatar-frame">
                 <div class="part p-head" id="av-head"></div>
                 <div class="part p-torso" id="av-torso"></div>
                 
-                <!-- Left Arm Component Split -->
                 <div class="arm-wrapper left-arm-pos">
                   <div class="sleeve" id="av-larm-sleeve"></div>
                   <div class="bare-arm" id="av-larm-bare"></div>
                 </div>
 
-                <!-- Right Arm Component Split -->
                 <div class="arm-wrapper right-arm-pos">
                   <div class="sleeve" id="av-rarm-sleeve"></div>
                   <div class="bare-arm" id="av-rarm-bare"></div>
                 </div>
 
+                <div class="part p-lleg" id="av-lleg"></div>
+                <div class="part p-rleg" id="av-rleg"></div>
+              </div>
 
+              <div>
