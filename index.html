@@ -3,90 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roblox - Build a New World</title>
+<title>Blocktor - Build & Play</title>
 <style>
   :root {
-    --roblox-blue: #5A82A6;
-    --roblox-dark-blue: #1D354D;
+    --blocktor-blue: #4A6E91;
+    --blocktor-dark: #1A2E40;
     --panel-bg: #EEF2F7;
-    --border-blue: #A2B5CD;
-    --green-btn: #4EAD3C;
-    --green-btn-border: #3A832B;
+    --border-blue: #92A8C0;
+    --green-btn: #3FA62E;
+    --green-btn-border: #2D7A21;
   }
 
   body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #BCD2EE url('https://archive.org') repeat-x top center;
+    font-family: Arial, sans-serif;
+    background: #A9C2E3 linear-gradient(to bottom, #779ECB, #A9C2E3) no-repeat top center;
+    background-size: 100% 200px;
     color: #000;
     font-size: 12px;
   }
 
-  /* Main Wrapper */
   .site-container {
     width: 900px;
     margin: 0 auto;
     background: white;
-    border-left: 2px solid var(--roblox-blue);
-    border-right: 2px solid var(--roblox-blue);
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-left: 2px solid var(--blocktor-blue);
+    border-right: 2px solid var(--blocktor-blue);
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
     min-height: 100vh;
   }
 
-  /* Header Branding Banner */
+  /* Header Branding */
   .header-banner {
-    background: linear-gradient(to right, #FFA500, #FFD700);
+    background: linear-gradient(to right, #FF9900, #FFCC00);
     height: 95px;
     position: relative;
     display: flex;
     align-items: center;
     padding: 0 20px;
-    border-bottom: 2px solid #D68A00;
+    border-bottom: 2px solid #C67A00;
   }
 
-  .logo-placeholder {
+  .logo {
     font-family: 'Arial Black', Impact, sans-serif;
-    font-size: 46px;
-    color: #E22127;
-    text-shadow: 3px 3px 0px #fff, -2px -2px 0px #fff, 4px 4px 5px rgba(0,0,0,0.4);
-    letter-spacing: -2px;
+    font-size: 44px;
+    color: #C82323;
+    text-shadow: 2px 2px 0px #fff, -2px -2px 0px #fff, 3px 3px 4px rgba(0,0,0,0.3);
+    letter-spacing: -1px;
   }
 
-  .play-now-banner-btn {
+  .play-now-btn {
     position: absolute;
     right: 20px;
-    top: 20px;
+    top: 25px;
     background: var(--green-btn);
     border: 2px solid var(--green-btn-border);
     color: white;
     font-weight: bold;
-    font-size: 20px;
-    padding: 10px 25px;
+    font-size: 18px;
+    padding: 8px 22px;
     cursor: pointer;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
 
-  .play-now-banner-btn:hover {
-    background: #439634;
-  }
+  .play-now-btn:hover { background: #348A25; }
 
-  /* Top sub-navigation menu line */
-  .top-meta-nav {
-    position: absolute;
-    top: 5px;
-    left: 20px;
-    font-size: 11px;
-  }
-  .top-meta-nav a { color: #000; text-decoration: none; margin-right: 10px;}
-
-  /* Main Vintage Navigation links bar */
+  /* Navigation Bar */
   .main-navbar {
-    background: var(--roblox-blue);
+    background: var(--blocktor-blue);
     padding: 6px 10px;
     display: flex;
     gap: 2px;
-    border-bottom: 1px solid var(--roblox-dark-blue);
+    border-bottom: 1px solid var(--blocktor-dark);
   }
 
   .main-navbar button {
@@ -106,7 +95,7 @@
 
   .main-navbar span { color: #BCD2EE; align-self: center; }
 
-  /* 2007 Multi-column Layout Blocks */
+  /* 2-Column Panel Layout */
   .main-layout {
     display: flex;
     padding: 15px;
@@ -127,14 +116,14 @@
     gap: 15px;
   }
 
-  /* Structural Panel Blue Header Panels */
+  /* Content Panels */
   .panel {
     border: 1px solid var(--border-blue);
     background: #FFF;
   }
 
   .panel-header {
-    background: var(--roblox-blue);
+    background: var(--blocktor-blue);
     color: white;
     padding: 5px 10px;
     font-weight: bold;
@@ -145,216 +134,228 @@
     padding: 12px;
   }
 
-  /* Member Login Subsystem Interface Form styles */
-  .login-form-box {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    max-width: 250px;
-  }
-
-  .login-form-box input {
-    padding: 3px;
+  /* Form Elements */
+  .login-box input {
+    padding: 4px;
     border: 1px solid #7F9DB9;
-    width: 100%;
+    margin-bottom: 8px;
+    width: 180px;
+    display: block;
   }
 
-  .login-actions-row {
-    display: flex;
-    gap: 10px;
-    margin-top: 5px;
-  }
-
-  .classic-blue-btn {
+  .retro-btn {
     background: linear-gradient(#FFF, #DCDCDC);
     border: 1px solid #777;
-    padding: 3px 12px;
+    padding: 4px 14px;
     cursor: pointer;
     font-weight: bold;
     font-size: 11px;
   }
-  .classic-blue-btn:hover { background: #EAEAEA; }
+  .retro-btn:hover { background: #EAEAEA; }
 
-  /* Interactive Game Center Card Node Grid Elements */
-  .games-list-feed, .catalog-items-grid {
+  /* Dynamic Avatar Rendering System */
+  .avatar-container {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .game-row-card {
-    display: flex;
-    gap: 15px;
-    border-bottom: 1px dashed #CCC;
-    padding-bottom: 12px;
-  }
-  .game-row-card:last-child { border-bottom: none; padding-bottom: 0; }
-
-  .game-icon-thumb {
-    width: 90px;
-    height: 70px;
-    background: #DDD;
-    border: 1px solid #999;
-    display: flex;
+    gap: 20px;
     align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 11px;
-    color: #555;
-  }
-
-  .game-info-details h3 {
-    margin: 0 0 5px 0;
-    color: #002244;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  .game-info-details h3:hover { text-decoration: underline; }
-
-  /* Flash Banner Emulator Node View Component */
-  .flash-emulated-banner {
-    background: #F0F4F8;
-    border: 1px solid #A2B5CD;
+    background: #F4F7FA;
     padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    border: 1px dashed var(--border-blue);
   }
 
-  .flash-emulated-banner .cta-text h2 { margin: 0; color: #D62222; font-size: 18px; }
-
-  /* Profile Dashboard Subview Section States */
-  .user-logged-panel {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-  }
-
-  .avatar-render-2d {
+  .avatar-frame {
     width: 100px;
-    height: 120px;
-    background: #EAEAEA;
-    border: 1px solid #AAA;
+    height: 130px;
+    background: #E5E9F0;
+    border: 1px solid #999;
     position: relative;
   }
 
   .part {
     position: absolute;
-    border: 1px solid #333;
-    background: #F3CA30;
+    border: 1px solid #222;
+    background: #F3CA30; /* Default Skin Tint */
+    box-sizing: border-box;
   }
-  .p-head { width: 26px; height: 26px; border-radius: 50%; top: 10px; left: 37px; }
-  .p-torso { width: 40px; height: 40px; top: 38px; left: 30px; background: #002244; }
-  .p-larm { width: 14px; height: 38px; top: 38px; left: 14px; }
-  .p-rarm { width: 14px; height: 38px; top: 38px; left: 72px; }
-  .p-lleg { width: 18px; height: 40px; top: 80px; left: 31px; background: #226622; }
-  .p-rleg { width: 18px; height: 40px; top: 80px; left: 51px; background: #226622; }
+  .p-head { width: 24px; height: 24px; border-radius: 50%; top: 8px; left: 38px; }
+  .p-torso { width: 40px; height: 42px; top: 34px; left: 30px; background: #E22127; }
+  .p-larm { width: 14px; height: 40px; top: 34px; left: 14px; }
+  .p-rarm { width: 14px; height: 40px; top: 34px; left: 72px; }
+  .p-lleg { width: 18px; height: 44px; top: 78px; left: 30px; background: #226622; }
+  .p-rleg { width: 18px; height: 44px; top: 78px; left: 50px; background: #226622; }
 
-  /* App Views Page Container Flags Toggle blocks */
-  .app-page-view { display: none; }
-  .app-page-view.active-view { display: block; }
+  /* App Views Router toggles */
+  .view-section { display: none; }
+  .view-section.active-view { display: block; }
 
-  /* Catalog Shop View Structure */
-  .catalog-item-box {
-    display: inline-block;
+  /* Games Grid Row Cards */
+  .game-card {
+    display: flex;
+    gap: 15px;
+    border-bottom: 1px dashed #CCC;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+  .game-card:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .game-thumb {
+    width: 90px;
+    height: 70px;
+    background: #CCD7E6;
+    border: 1px solid var(--border-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #4A6E91;
+  }
+
+  /* Catalog Store Items */
+  .catalog-flex {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .item-card {
     width: 120px;
-    border: 1px solid #DDD;
+    border: 1px solid #CCC;
     padding: 10px;
     text-align: center;
-    margin-right: 10px;
     background: #F9F9F9;
   }
+
+  .item-thumb {
+    height: 60px;
+    background: #E5E9F0;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 1px solid #DDD;
+  }
+
+  /* Live Action Alert Launcher Overlay */
+  .game-overlay {
+    display: none;
+    position: fixed;
+    top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+  }
+  .game-window {
+    background: #FFF;
+    padding: 20px;
+    border: 4px solid var(--blocktor-blue);
+    text-align: center;
+    width: 400px;
+  }
+
+  .stat-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .stat-table th, .stat-table td {
+    border: 1px solid #CCC;
+    padding: 6px;
+    text-align: left;
+  }
+  .stat-table th { background: #E9EEF4; }
 </style>
 </head>
 <body>
 
 <div class="site-container">
 
-  <!-- Header Banner -->
+  <!-- Header Banner Section -->
   <div class="header-banner">
-    <div class="top-meta-nav">
-      <a href="#" onclick="showSection('home')">Login</a> | <a href="#">Register</a> | <a href="#">Help</a>
-    </div>
-    <div class="logo-placeholder">ROBLOX</div>
-    <button class="play-now-banner-btn" onclick="showSection('games')">PLAY NOW</button>
+    <div class="logo">BLOCKTOR</div>
+    <button class="play-now-btn" onclick="navigateTo('games')">PLAY NOW</button>
   </div>
 
-  <!-- Classic Main Link Bar -->
+  <!-- Main System Nav Tabs -->
   <div class="main-navbar">
-    <button onclick="showSection('home')">My ROBLOX</button>
+    <button onclick="navigateTo('home')">My Blocktor</button>
     <span>|</span>
-    <button onclick="showSection('games')">Games</button>
+    <button onclick="navigateTo('games')">Games</button>
     <span>|</span>
-    <button onclick="showSection('catalog')">Catalog</button>
+    <button onclick="navigateTo('catalog')">Catalog</button>
     <span>|</span>
-    <button onclick="alert('Forum functional database coming soon!')">Forum</button>
-    <span>|</span>
-    <button onclick="showSection('statistics')">Roblox Stats</button>
+    <button onclick="navigateTo('stats')">Blocktor Stats</button>
   </div>
 
-  <!-- Main View Frame -->
+  <!-- Multi-Column Layout Grid -->
   <div class="main-layout">
     
-    <!-- Left Column Dynamic Pane -->
+    <!-- LEFT CONTENT BODY -->
     <div class="left-column">
       
-      <!-- SUBPAGE SECTION 1: HOME PANEL -->
-      <div id="view-home" class="app-page-view active-view">
+      <!-- VIEW 1: HOME PAGE -->
+      <div id="page-home" class="view-section active-view">
         
-        <!-- Authentication Panel Container Block Toggle -->
-        <div class="panel" id="auth-panel-wrapper" style="margin-bottom:15px;">
+        <!-- Authentication Panel Switcher -->
+        <div class="panel" style="margin-bottom: 15px;">
           <div class="panel-header">Member Login</div>
           <div class="panel-body">
-            <div class="login-form-box" id="login-form-fields">
-              <div>
-                <label style="display:block; font-weight:bold; margin-bottom:2px;">Username:</label>
-                <input type="text" id="usernameInput" value="Player1">
-              </div>
-              <div>
-                <label style="display:block; font-weight:bold; margin-bottom:2px;">Password:</label>
-                <input type="password" value="******">
-              </div>
-              <div class="login-actions-row">
-                <button class="classic-blue-btn" onclick="executeLogin()">Login</button>
-                <button class="classic-blue-btn">Register</button>
-              </div>
+            
+            <!-- Login State Container Form -->
+            <div id="login-form">
+              <label style="font-weight: bold; display:block; margin-bottom:4px;">Username:</label>
+              <input type="text" id="userInput" value="BlocktorPlayer">
+              <button class="retro-btn" onclick="loginAction()">Login</button>
             </div>
 
-            <!-- Dynamic Session Dashboard View Node -->
-            <div id="user-profile-dashboard" class="user-logged-panel" style="display:none;">
-              <div class="avatar-render-2d">
-                <div class="part p-head"></div>
-                <div class="part p-torso" id="char-torso"></div>
-                <div class="part p-larm"></div>
-                <div class="part p-rarm"></div>
-                <div class="part p-lleg"></div>
-                <div class="part p-rleg"></div>
+            <!-- Logged In Profile Panel Interface -->
+            <div id="profile-dashboard" class="avatar-container" style="display: none;">
+              <div class="avatar-frame">
+                <div class="part p-head" id="av-head"></div>
+                <div class="part p-torso" id="av-torso"></div>
+                <div class="part p-larm" id="av-larm"></div>
+                <div class="part p-rarm" id="av-rarm"></div>
+                <div class="part p-lleg" id="av-lleg"></div>
+                <div class="part p-rleg" id="av-rleg"></div>
               </div>
               <div>
-                <h2 style="margin:0 0 5px 0;" id="welcome-user-lbl">Welcome, Explorer!</h2>
-                <p><strong>Tickets:</strong> <span id="tix-val">10</span> Tix</p>
-                <p><strong>Robux:</strong> <span id="rbx-val">0</span> R$</p>
-                <button class="classic-blue-btn" onclick="executeLogout()">Logout</button>
+                <h2 style="margin:0 0 8px 0;" id="welcome-msg">Welcome Explorer!</h2>
+                <p style="margin: 4px 0;"><strong>Tokens:</strong> <span id="token-count">25</span> Tk</p>
+                <p style="margin: 4px 0;"><strong>Rank:</strong> Builder</p>
+                <button class="retro-btn" style="margin-top:8px;" onclick="logoutAction()">Logout</button>
               </div>
             </div>
 
           </div>
         </div>
 
-        <!-- Classic Ad/Promo Banner Component -->
-        <div class="flash-emulated-banner">
-          <div class="cta-text">
-            <h2>The FREE online building game.</h2>
-            <p style="margin:5px 0 0 0; color:#555;">Design your own worlds, battle with swords, and trade custom gear assets.</p>
+        <!-- Call to Action Banner Box -->
+        <div class="panel">
+          <div class="panel-header">The Free Online Block Building Game</div>
+          <div class="panel-body" style="background: #F4F7FA;">
+            <p style="font-size: 13px; font-weight: bold; color: #B02020; margin-top: 0;">Construct worlds, script blocks, and battle rivals.</p>
+            <p>Customize your virtual player configuration avatar using the currency earned daily just for checking into your control panel portal dashboard.</p>
+            <button class="retro-btn" style="background: var(--green-btn); color:white; border-color: var(--green-btn-border);" onclick="navigateTo('games')">Browse Playable Maps</button>
           </div>
-          <button class="classic-blue-btn" style="background:#4EAD3C; color:white; padding:8px 15px; border-color:#3A832B;" onclick="showSection('games')">Play Free Game</button>
         </div>
+
       </div>
 
-      <!-- SUBPAGE SECTION 2: GAMES DISPLAY LIST FEED -->
-      <div id="view-games" class="app-page-view">
+      <!-- VIEW 2: GAMES CHANNEL LIST -->
+      <div id="page-games" class="view-section">
         <div class="panel">
-          <div class="panel-header">Featured Places & Arenas</div>
+          <div class="panel-header">Public Game Servers</div>
           <div class="panel-body">
-            <div class="games-list-feed">
-              
+            
+            <div class="game-card">
+              <div class="game-thumb">MAP BRICK</div>
+              <div>
+                <h3 style="margin: 0 0 4px 0; color: #1A3E60; cursor:pointer;" onclick="launchGame('Brick Battle Arena')">Brick Battle Arena (Classic)</h3>
+                <p style="margin: 4px 0; color: #444;">Classic multi-team rocket and trowel weapon survival crossroad world map.</p>
+                <span style="color:#777; font-size:11px;">Host: Admin | Total Plays: 48,291</span>
+              </div>
+            </div>
+
+            <div class="game-card">
+              <div class="game-thumb">MAP BRICK</div>
+              <div>
