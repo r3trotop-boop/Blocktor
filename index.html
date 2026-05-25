@@ -32,7 +32,7 @@
     min-height: 100vh;
   }
 
-  /* Header Branding */
+  /* Header Banner */
   .header-banner {
     background: linear-gradient(to right, #FF9900, #FFCC00);
     height: 95px;
@@ -67,9 +67,7 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
 
-  .play-now-btn:hover { background: #348A25; }
-
-  /* Navigation Bar */
+  /* Navigation Tabs Bar */
   .main-navbar {
     background: var(--blocktor-blue);
     padding: 6px 10px;
@@ -96,7 +94,7 @@
 
   .main-navbar span { color: #BCD2EE; align-self: center; }
 
-  /* 2-Column Panel Layout */
+  /* 2-Column Core Layout Panels */
   .main-layout {
     display: flex;
     padding: 15px;
@@ -118,7 +116,6 @@
     gap: 15px;
   }
 
-  /* Content Panels */
   .panel {
     border: 1px solid var(--border-blue);
     background: #FFF;
@@ -146,7 +143,7 @@
   }
   .retro-btn:hover { background: #EAEAEA; }
 
-  /* Auth Tabs Layout styling */
+  /* Login & Signup Tab Selectors */
   .auth-tabs {
     display: flex;
     gap: 5px;
@@ -157,7 +154,7 @@
   .auth-tab-btn {
     background: #EAEAEA;
     border: 1px solid #BBB;
-    padding: 3px 10px;
+    padding: 4px 12px;
     cursor: pointer;
     font-size: 11px;
     font-weight: bold;
@@ -186,7 +183,6 @@
     box-sizing: border-box;
   }
 
-  /* Moderation Error Indicator */
   .error-text {
     color: #FF0000;
     font-weight: bold;
@@ -194,7 +190,7 @@
     font-size: 11px;
   }
 
-  /* Character Canvas Structs */
+  /* 2D Character Display Grid Graphics Canvas */
   .avatar-container {
     display: flex;
     gap: 20px;
@@ -221,7 +217,6 @@
   .p-head { width: 26px; height: 26px; top: 8px; left: 42px; }
   .p-torso { width: 42px; height: 44px; top: 34px; left: 34px; }
   
-  /* Short-Sleeve Split Arms Graphics */
   .arm-wrapper { position: absolute; width: 14px; height: 42px; top: 34px; }
   .left-arm-pos { left: 18px; }
   .right-arm-pos { left: 78px; }
@@ -229,15 +224,13 @@
   .sleeve { width: 14px; height: 12px; border: 1px solid #222; border-bottom: none; top: 0; position: absolute; }
   .bare-arm { width: 14px; height: 30px; border: 1px solid #222; top: 12px; position: absolute; }
 
-  /* Leg Layout Elements */
   .p-lleg { width: 20px; height: 46px; top: 78px; left: 34px; }
   .p-rleg { width: 20px; height: 46px; top: 78px; left: 56px; }
 
-  /* Router Pages Controllers */
+  /* Subview App States Router Pages */
   .view-section { display: none; }
   .view-section.active-view { display: block; }
 
-  /* Item Cards Grid */
   .catalog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -262,7 +255,6 @@
     border: 1px solid #DDD;
   }
 
-  /* Game Overlay Modal Popup box */
   .game-overlay {
     display: none;
     position: fixed;
@@ -291,7 +283,7 @@
     <button class="play-now-btn" onclick="navigateTo('games')">PLAY NOW</button>
   </div>
 
-  <!-- Main System Top Navigation Tabs Links -->
+  <!-- Main Navigation Tabs Header Links -->
   <div class="main-navbar">
     <button onclick="navigateTo('home')">My Blocktor</button>
     <span>|</span>
@@ -302,26 +294,26 @@
     <button onclick="navigateTo('stats')">Blocktor Stats</button>
   </div>
 
-  <!-- Multi-Column Layout Grid -->
+  <!-- Main Multi-Column Split Framework Layout -->
   <div class="main-layout">
     
-    <!-- LEFT CONTENT CHANNEL -->
+    <!-- LEFT WINDOW VIEWS CHANNELS CONTENT PANE -->
     <div class="left-column">
       
-      <!-- PAGE VIEW 1: GATEWAY HOME PAGE -->
+      <!-- SUBPAGE WINDOW 1: LOGIN HOOK HOME FRAME -->
       <div id="page-home" class="view-section active-view">
         <div class="panel">
           <div class="panel-header">Blocktor Gateway Portal System</div>
           <div class="panel-body">
             
-            <!-- Auth Tab Panels Form Selection Switcher Header -->
+            <!-- Dual Registration Subtabs Panels Forms State Controller Wrapper -->
             <div id="auth-panel-controls">
               <div class="auth-tabs">
                 <button id="tab-login" class="auth-tab-btn active" onclick="switchAuthTab('login')">Log In</button>
                 <button id="tab-signup" class="auth-tab-btn" onclick="switchAuthTab('signup')">Sign Up</button>
               </div>
 
-              <!-- VIEW A: SIGN IN INTERFACE BOX -->
+              <!-- CONTROLLER FORM VIEW A: SECURE LOGIN FIELDS VIEW -->
               <div id="subview-login" class="auth-subview active">
                 <div class="auth-field-block">
                   <label>Username:</label>
@@ -335,7 +327,7 @@
                 <div id="login-error-msg" class="error-text" style="display:none;"></div>
               </div>
 
-              <!-- VIEW B: ACCOUNT CREATION FORM LAYOUT CONTAINER -->
+              <!-- CONTROLLER FORM VIEW B: REGISTRATION FIELD CREATOR SUBVIEW -->
               <div id="subview-signup" class="auth-subview">
                 <div class="auth-field-block">
                   <label>Create Username:</label>
@@ -350,7 +342,7 @@
               </div>
             </div>
 
-            <!-- PROFILE PANEL DISPLAY -->
+            <!-- PLAYER GRAPHICS DASHBOARD HOOK (HIDES BY DEFAULT UNTIL SIGN IN) -->
             <div id="profile-dashboard" class="avatar-container" style="display: none;">
               <div class="avatar-frame">
                 <div class="part p-head" id="av-head"></div>
@@ -371,3 +363,4 @@
               </div>
 
               <div>
+                <h2 style="margin:0 0 8px 0;" id="welcome-msg">Welcome Explorer!</h2>
