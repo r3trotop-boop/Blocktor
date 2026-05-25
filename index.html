@@ -29,7 +29,7 @@ body {
     min-height: 100vh;
 } 
 
-/* SYSTEM GATEKEEPER CARD WRAPPER */
+/* CONTAINER */
 .auth-wrapper {
     background: var(--card-light);
     border-radius: 28px;
@@ -40,52 +40,6 @@ body {
     border: 5px solid #ffffff;
     text-align: center;
     box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-}
-
-/* ANIMATED MASCOT ART BOX */
-.mascot-container {
-    width: 70px;
-    height: 70px;
-    background: var(--color-happy);
-    margin: 0 auto 15px auto;
-    border-radius: 18px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    animation: floatMascot 3s ease-in-out infinite;
-    box-shadow: 0 8px 16px rgba(253, 203, 110, 0.4);
-}
-.mascot-eyes {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 4px;
-    transition: transform 0.1s ease;
-}
-.mascot-eye {
-    width: 8px;
-    height: 12px;
-    background: var(--text-dark);
-    border-radius: 50%;
-}
-.mascot-mouth {
-    width: 16px;
-    height: 6px;
-    border-bottom: 3px solid var(--text-dark);
-    border-radius: 0 0 8px 8px;
-    transition: all 0.2s ease;
-}
-/* Mascot emotional reactions */
-.mascot-container.shy .mascot-eyes { transform: translateY(4px) scaleY(0.2); }
-.mascot-container.shocked .mascot-mouth { height: 10px; background: var(--text-dark); border-radius: 50%; }
-.mascot-container.happy-state .mascot-mouth { transform: scale(1.3); }
-
-@keyframes floatMascot {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-6px) rotate(3deg); }
 }
 
 .auth-title {
@@ -100,7 +54,6 @@ body {
     font-size: 14px;
     margin-bottom: 25px;
     font-weight: 500;
-    min-height: 20px;
 }
 .auth-tabs {
     display: flex;
@@ -108,6 +61,7 @@ body {
     padding: 6px;
     border-radius: 14px;
     margin-bottom: 25px;
+    gap: 4px;
 }
 .auth-tab-btn {
     flex: 1;
@@ -119,7 +73,6 @@ body {
     border-radius: 10px;
     color: var(--text-cool);
     font-size: 14px;
-    transition: all 0.2s ease;
 }
 .auth-tab-btn.active {
     background: #ffffff;
@@ -136,7 +89,6 @@ body {
     font-size: 13px;
     margin-bottom: 8px;
     color: var(--text-dark);
-    letter-spacing: -0.2px;
 }
 .input-group input, .input-group select {
     width: 100%;
@@ -148,14 +100,9 @@ body {
     box-sizing: border-box;
     outline: none;
     background-color: white;
-    transition: all 0.2s ease;
-}
-.input-group input:focus, .input-group select:focus {
-    border-color: var(--btn-primary);
-    box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.15);
 }
 
-/* FLAGGED ERROR TEXT */
+/* ERROR MESSAGE */
 .error-msg {
     color: var(--color-fun);
     font-size: 13px;
@@ -166,7 +113,6 @@ body {
     background: rgba(255, 118, 117, 0.1);
     border-radius: 8px;
     border-left: 3px solid var(--color-fun);
-    text-align: left;
 }
 
 .submit-btn {
@@ -180,25 +126,12 @@ body {
     font-weight: 800;
     cursor: pointer;
     margin-top: 10px;
-    box-shadow: 0 6px 16px rgba(108, 92, 231, 0.3);
-    transition: all 0.2s ease;
 }
 .submit-btn:hover { 
     background: var(--btn-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4);
-}
-.submit-btn:active {
-    transform: translateY(0px);
-}
-.submit-btn:disabled {
-    background: var(--text-cool);
-    box-shadow: none;
-    transform: none;
-    cursor: not-allowed;
 }
 
-/* MAIN GAME CONTAINER HUB */
+/* DASHBOARD */
 .game-hub {
     display: none;
     width: 100%;
@@ -213,7 +146,6 @@ body {
     background: #ffffff;
     padding: 15px 30px;
     border-radius: 20px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.02);
 }
 .hub-logo {
     font-size: 26px;
@@ -239,7 +171,6 @@ body {
     margin-left: 10px;
 }
 
-/* HUB COLUMN STRUCTURES */
 .hub-main {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -250,7 +181,6 @@ body {
     background: #ffffff;
     border-radius: 20px;
     padding: 25px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.02);
     position: relative;
     overflow: hidden;
 }
@@ -273,10 +203,9 @@ body {
     color: var(--text-cool);
     font-size: 14px;
     line-height: 1.6;
-    margin-bottom: 20px;
 }
 
-/* LIVE LOBBY CHATROOM */
+/* CHATROOM */
 .chat-container {
     border: 2px solid var(--border-soft);
     border-radius: 12px;
@@ -286,6 +215,7 @@ body {
     height: 100px;
     overflow-y: auto;
     font-size: 13px;
+    text-align: left;
 }
 .chat-input-wrapper {
     display: flex;
@@ -321,18 +251,8 @@ body {
 </head> 
 <body>
 
-<!-- ================= VERIFICATION PANEL AREA ================= -->
+<!-- ================= ENTRY GATEWAY ================= -->
 <div class="auth-wrapper" id="authGate">
-    
-    <!-- CSS Interactive Block Mascot -->
-    <div class="mascot-container" id="blockMascot">
-        <div class="mascot-eyes">
-            <div class="mascot-eye"></div>
-            <div class="mascot-eye"></div>
-        </div>
-        <div class="mascot-mouth"></div>
-    </div>
-
     <div class="auth-title">Blocktor</div>
     <div class="auth-subtitle" id="authSubtitle">Welcome back, builder! Ready to explore?</div>
 
@@ -344,30 +264,30 @@ body {
     <div class="input-group">
         <label for="usernameInput">Player Name</label>
         <input type="text" id="usernameInput" placeholder="Enter your player name...">
-        <div class="error-msg" id="profanityError">Warning: Name contains inappropriate words!</div>
+        <div class="error-msg" id="profanityError">Username contains offensive/inappropriate words</div>
     </div>
 
     <div class="input-group">
         <label for="passwordInput">Password</label>
-        <input type="password" id="passwordInput" placeholder="Enter your secret password...">
+        <input type="password" id="passwordInput" placeholder="Enter your password...">
     </div>
 
     <div class="input-group">
         <label for="birthYearInput">Birth Year</label>
         <select id="birthYearInput">
-            <!-- Filled via Script -->
+            <!-- Dynamically generated -->
         </select>
     </div>
 
     <button type="button" class="submit-btn" id="submitActionBtn">Let's Play</button>
 </div>
 
-<!-- ================= SECURED MAIN PANEL HUB ================= -->
+<!-- ================= MAIN HOME DASHBOARD ================= -->
 <div class="game-hub" id="gameHub">
     <header class="hub-header">
         <div class="hub-logo">Blocktor</div>
         <div class="hub-user-badge">
-            <span id="userProfileName">GuestPlayer</span>
+            <span id="userProfileName">Player</span>
             <button class="logout-btn" type="button" id="logoutBtn">Log Out</button>
         </div>
     </header>
@@ -387,4 +307,59 @@ body {
                         <input type="text" id="chatInputField" placeholder="Type a friendly message...">
                         <button class="chat-send-btn" type="button" id="sendChatBtn">Send</button>
                     </div>
+                </div>
 
+                <div id="chatBlockedSection" style="display: none;">
+                    <div class="chat-disabled-box">
+                        Chat is restricted for players born after 2010 to guarantee maximum child safety.
+                    </div>
+                </div>
+            </div>
+
+            <div class="fun-card safe">
+                <h2 class="card-title">100% Monitored Safe Sandbox</h2>
+                <p class="card-text">Every room, chat element, and block upload sequence is heavily scanned by our protection engines to keep out mean behavior completely.</p>
+            </div>
+        </div>
+
+        <aside>
+            <div class="fun-card">
+                <h2 class="card-title" style="font-size: 18px;">Account Status</h2>
+                <p class="card-text" style="font-size: 13px;" id="ageStatusLabel">Checking restrictions...</p>
+            </div>
+        </aside>
+    </main>
+</div>
+
+<!-- ================= SYSTEM CORE LOGIC ================= -->
+<script>
+// Built-in account database storage
+let registeredUsersLog = {
+    "testplayer": { password: "123", birthYear: 2005, displayName: "TestPlayer" },
+    "kidbuilder": { password: "abc", birthYear: 2015, displayName: "KidBuilder" }
+};
+
+let currentMode = 'login';
+// Words that get blocked instantly
+const badWords = ['nword', 'idiot', 'jerk', 'ass', 'bitch', 'fuck']; 
+
+// Global launch dashboard handler
+function launchHub(name, birthYear) {
+    document.getElementById('authGate').style.display = 'none';
+    document.getElementById('gameHub').style.display = 'block';
+    document.getElementById('userProfileName').innerText = name;
+
+    const chatActive = document.getElementById('chatActiveSection');
+    const chatBlocked = document.getElementById('chatBlockedSection');
+    const ageStatusLabel = document.getElementById('ageStatusLabel');
+
+    // AGE CONTROLLER
+    if (birthYear > 2010) {
+        chatActive.style.display = 'none';
+        chatBlocked.style.display = 'block';
+        ageStatusLabel.innerHTML = "<strong>Child Account Active</strong><br>Features locked: Server Chatting";
+        ageStatusLabel.style.color = "#d63031";
+    } else {
+        chatActive.style.display = 'block';
+        chatBlocked.style.display = 'none';
+        ageStatusLabel.innerHTML = "<strong>Standard Account Active</strong><br>Chatting enabled.";
