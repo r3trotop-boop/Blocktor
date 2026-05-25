@@ -142,6 +142,15 @@
   }
   .retro-btn:hover { background: #EAEAEA; }
 
+  /* Moderation Error Indicator */
+  .error-text {
+    color: #FF0000;
+    font-weight: bold;
+    margin-top: 6px;
+    display: none;
+    font-size: 11px;
+  }
+
   /* Advanced Avatar Rendering Engine with Short Sleeve Support */
   .avatar-container {
     display: flex;
@@ -169,7 +178,7 @@
   .p-head { width: 26px; height: 26px; top: 8px; left: 42px; }
   .p-torso { width: 42px; height: 44px; top: 34px; left: 34px; }
   
-  /* Complex Split Arm Architecture */
+  /* Split Arm Architecture */
   .arm-wrapper { position: absolute; width: 14px; height: 42px; top: 34px; }
   .left-arm-pos { left: 18px; }
   .right-arm-pos { left: 78px; }
@@ -258,21 +267,22 @@
       
       <!-- VIEW 1: HOME PAGE -->
       <div id="page-home" class="view-section active-view">
-        <div class="panel" style="margin-bottom: 15px;">
+        <div class="panel">
           <div class="panel-header">Member Login</div>
           <div class="panel-body">
             
             <!-- Login State Container Form -->
             <div id="login-form">
               <label style="font-weight: bold; display:block; margin-bottom:4px;">Username:</label>
-              <input type="text" id="userInput" value="BlocktorPlayer" style="padding:4px; margin-bottom:8px; width:180px; display:block;">
+              <input type="text" id="userInput" value="BlocktorPlayer" style="padding:4px; margin-bottom:2px; width:180px; display:block;">
               <button class="retro-btn" onclick="loginAction()">Login</button>
+              <div id="moderation-error" class="error-text">username contains inappropriate/offence words</div>
             </div>
 
             <!-- Logged In Profile Panel Interface -->
             <div id="profile-dashboard" class="avatar-container" style="display: none;">
               
-              <!-- Refined Character Canvas Structure -->
+              <!-- Character Canvas Structure -->
               <div class="avatar-frame">
                 <div class="part p-head" id="av-head"></div>
                 <div class="part p-torso" id="av-torso"></div>
@@ -336,7 +346,3 @@
               <div class="item-card">
                 <div class="item-thumb" style="background:#111; color:#fff; font-size:11px;">Pants Asset</div>
                 <strong>Classic Black Pants</strong>
-                <p style="color: #3FA62E; font-weight: bold; margin: 4px 0;">5 Tokens</p>
-                <button class="retro-btn" onclick="buyAsset('pants', '#111', 5)">Equip Pants</button>
-              </div>
-
