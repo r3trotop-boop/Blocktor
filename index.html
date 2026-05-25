@@ -142,12 +142,50 @@
   }
   .retro-btn:hover { background: #EAEAEA; }
 
+  /* Auth Sub-tabs styling */
+  .auth-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 5px;
+  }
+  .auth-tab-btn {
+    background: #EAEAEA;
+    border: 1px solid #BBB;
+    padding: 3px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+  }
+  .auth-tab-btn.active {
+    background: var(--blocktor-blue);
+    color: white;
+    border-color: var(--blocktor-dark);
+  }
+
+  .auth-subview { display: none; }
+  .auth-subview.active { display: block; }
+
+  .auth-field-block {
+    margin-bottom: 8px;
+  }
+  .auth-field-block label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .auth-field-block input {
+    padding: 4px;
+    width: 180px;
+    border: 1px solid #7F9DB9;
+  }
+
   /* Moderation Error Indicator */
   .error-text {
     color: #FF0000;
     font-weight: bold;
     margin-top: 6px;
-    display: none;
     font-size: 11px;
   }
 
@@ -268,15 +306,43 @@
       <!-- VIEW 1: HOME PAGE -->
       <div id="page-home" class="view-section active-view">
         <div class="panel">
-          <div class="panel-header">Member Login</div>
+          <div class="panel-header">Blocktor Gateway System</div>
           <div class="panel-body">
             
-            <!-- Login State Container Form -->
-            <div id="login-form">
-              <label style="font-weight: bold; display:block; margin-bottom:4px;">Username:</label>
-              <input type="text" id="userInput" value="BlocktorPlayer" style="padding:4px; margin-bottom:2px; width:180px; display:block;">
-              <button class="retro-btn" onclick="loginAction()">Login</button>
-              <div id="moderation-error" class="error-text">username contains inappropriate/offence words</div>
+            <!-- Auth Selection Dashboard Panels Wrapper -->
+            <div id="auth-panel-controls">
+              <div class="auth-tabs">
+                <button id="tab-login" class="auth-tab-btn active" onclick="switchAuthTab('login')">Log In</button>
+                <button id="tab-signup" class="auth-tab-btn" onclick="switchAuthTab('signup')">Sign Up</button>
+              </div>
+
+              <!-- VIEW A: LOGIN FORM SYSTEM CONTAINER -->
+              <div id="subview-login" class="auth-subview active">
+                <div class="auth-field-block">
+                  <label>Username:</label>
+                  <input type="text" id="loginUser" placeholder="Enter username...">
+                </div>
+                <div class="auth-field-block">
+                  <label>Password:</label>
+                  <input type="password" id="loginPass" placeholder="Enter password...">
+                </div>
+                <button class="retro-btn" onclick="loginAction()">Log In</button>
+                <div id="login-error-msg" class="error-text" style="display:none;"></div>
+              </div>
+
+              <!-- VIEW B: SIGNUP REGISTRATION SYSTEM CONTAINER -->
+              <div id="subview-signup" class="auth-subview">
+                <div class="auth-field-block">
+                  <label>Create Username:</label>
+                  <input type="text" id="signupUser" placeholder="Choose username...">
+                </div>
+                <div class="auth-field-block">
+                  <label>Create Password:</label>
+                  <input type="password" id="signupPass" placeholder="Choose password...">
+                </div>
+                <button class="retro-btn" onclick="signupAction()">Create Account</button>
+                <div id="signup-error-msg" class="error-text" style="display:none;"></div>
+              </div>
             </div>
 
             <!-- Logged In Profile Panel Interface -->
@@ -304,45 +370,3 @@
               </div>
 
               <div>
-                <h2 style="margin:0 0 8px 0;" id="welcome-msg">Welcome Explorer!</h2>
-                <p style="margin: 4px 0;"><strong>Tokens:</strong> <span id="token-count">50</span> Tk</p>
-                <button class="retro-btn" style="margin-top:8px;" onclick="logoutAction()">Logout</button>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <!-- VIEW 2: GAMES CHANNEL LIST -->
-      <div id="page-games" class="view-section">
-        <div class="panel">
-          <div class="panel-header">Public Game Servers</div>
-          <div class="panel-body">
-            <p>Click a server destination to connect using your customized character skin layout properties.</p>
-            <button class="retro-btn" onclick="launchGame('Crossroads Combat Arena')">Join Crossroads Server</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- VIEW 3: ITEM SHOP ASSET CATALOG -->
-      <div id="page-catalog" class="view-section">
-        <div class="panel">
-          <div class="panel-header">Blocktor Clothing & Skin Customization Shop</div>
-          <div class="panel-body">
-            <p style="margin-top: 0; color:#555; margin-bottom: 12px;">Equipping custom assets clears past colors. If you wear real clothing, you can paint your remaining avatar body parts completely skin-toned!</p>
-            
-            <div class="catalog-grid">
-              
-              <!-- CLOTHING ITEM: SHIRT -->
-              <div class="item-card">
-                <div class="item-thumb" style="background:#3B5998; color:#fff; font-size:11px;">Shirt Asset</div>
-                <strong>Blue Short-Sleeve</strong>
-                <p style="color: #3FA62E; font-weight: bold; margin: 4px 0;">5 Tokens</p>
-                <button class="retro-btn" onclick="buyAsset('shirt', '#3B5998', 5)">Equip Shirt</button>
-              </div>
-
-              <!-- CLOTHING ITEM: PANTS -->
-              <div class="item-card">
-                <div class="item-thumb" style="background:#111; color:#fff; font-size:11px;">Pants Asset</div>
-                <strong>Classic Black Pants</strong>
