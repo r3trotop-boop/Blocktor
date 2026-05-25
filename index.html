@@ -1,4 +1,4 @@
-# Blocktor Website Script (Classic Roblox Style + Avatar System v2)
+# Blocktor Website Script (Fully Working Roblox-Style + Avatar System)
 
 Save this as `index.html`
 
@@ -64,6 +64,16 @@ padding:10px;
 height:540px;
 }
 
+.sidebar p{
+font-size:14px;
+margin:6px 0;
+cursor:pointer;
+}
+
+.sidebar p:hover{
+text-decoration:underline;
+}
+
 .avatarBox{
 text-align:center;
 margin-bottom:10px;
@@ -76,7 +86,6 @@ background:#d9d9d9;
 border:2px solid #777;
 margin:auto;
 position:relative;
-cursor:pointer;
 }
 
 .part{
@@ -121,9 +130,10 @@ background:#3f8cff;
 .leftLeg{left:30px;}
 .rightLeg{left:60px;}
 
-.avatarControls{
-margin-top:8px;
-font-size:12px;
+.avatarControls button{
+margin:3px;
+padding:5px;
+cursor:pointer;
 }
 
 .colorPalette{
@@ -139,20 +149,6 @@ height:22px;
 border:1px solid #333;
 cursor:pointer;
 }
-
-.selected{
-outline:2px solid black;
-}
-
-.sidebar p{
-font-size:14px;
-margin:6px 0;
-cursor:pointer;
-}
-
-.sidebar p:hover{text-decoration:underline;}
-
-.main{flex:1;}
 
 .page{display:none;}
 .page.active{display:block;}
@@ -216,17 +212,25 @@ font-size:13px;
 <div class="layout">
 
 <div class="sidebar">
+
 <div class="avatarBox">
-<div class="avatar" id="avatar">
-<div class="part head" data-part="head"></div>
-<div class="part torso" data-part="torso"></div>
-<div class="part arm leftArm" data-part="arm"></div>
-<div class="part arm rightArm" data-part="arm"></div>
-<div class="part leg leftLeg" data-part="leg"></div>
-<div class="part leg rightLeg" data-part="leg"></div>
+<div class="avatar" id="avatarModel">
+<div class="part head"></div>
+<div class="part torso"></div>
+<div class="part arm leftArm"></div>
+<div class="part arm rightArm"></div>
+<div class="part leg leftLeg"></div>
+<div class="part leg rightLeg"></div>
 </div>
-<p><b>Player</b></p>
+<p><b id="username">Player</b></p>
 </div>
+
+<p onclick="showPage('games')">Home</p>
+<p onclick="showPage('avatar')">Avatar Editor</p>
+<p onclick="showPage('settings')">Settings</p>
+<p onclick="alert('Inventory coming soon!')">Inventory</p>
+<p onclick="alert('Friends coming soon!')">Friends</p>
+<p onclick="alert('Messages coming soon!')">Messages</p>
 
 <div class="avatarControls">
 <p><b>Select Part:</b></p>
@@ -238,16 +242,16 @@ font-size:13px;
 <p><b>Colors:</b></p>
 <div class="colorPalette" id="palette"></div>
 </div>
+
 </div>
 
 <div class="main">
 
-<!-- GAMES PAGE -->
 <div id="games" class="page active">
 <div class="welcome">
 <h1>Welcome to Blocktor</h1>
 <p>Play and explore games.</p>
-<button class="playbtn">PLAY NOW</button>
+<button class="playbtn" onclick="showPage('games')">PLAY NOW</button>
 </div>
 
 <div class="gamesbox">
@@ -261,15 +265,13 @@ font-size:13px;
 </div>
 </div>
 
-<!-- AVATAR PAGE -->
 <div id="avatar" class="page">
 <div class="welcome">
 <h1>Avatar Editor</h1>
-<p>Click a body part then choose a color.</p>
+<p>Click a part, then choose a color.</p>
 </div>
 </div>
 
-<!-- SETTINGS PAGE -->
 <div id="settings" class="page">
 <div class="welcome">
 <h1>Settings</h1>
@@ -283,12 +285,9 @@ font-size:13px;
 <div class="footer">© 2026 Blocktor</div>
 
 <script>
-let selectedPart = "torso";
+let selectedPart = 'torso';
 
-const colors = [
-"#f2c59c","#d8a373","#b97a56","#8d5524","#ffcc00",
-"#3f8cff","#2f5aa8","#ff4d4d","#2ecc71","#9b59b6"
-];
+const colors = ['#f2c59c','#d8a373','#b97a56','#8d5524','#ffcc00','#3f8cff','#2f5aa8','#ff4d4d','#2ecc71','#9b59b6'];
 
 function showPage(id){
  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -324,27 +323,20 @@ function applyColor(color){
 }
 
 function checkNoobReset(){
- let skinParts = ['head','arm'];
- let allSkin = true;
-
- document.querySelector('.head').style.background;
-
- let head = document.querySelector('.head').style.background;
- let arms = document.querySelector('.arm').style.background;
- let legs = document.querySelector('.leftLeg').style.background;
-
  let skin = ['#f2c59c','#d8a373','#b97a56','#8d5524'];
 
- function isSkin(c){return skin.includes(c)}
+ let head = document.querySelector('.head').style.background;
+ let torso = document.querySelector('.torso').style.background;
+ let leg = document.querySelector('.leftLeg').style.background;
 
- if(!isSkin(head) || !isSkin(arms) || !isSkin(legs)){
-  return;
+ function isSkin(c){ return skin.includes(c); }
+
+ if(isSkin(head) && isSkin(torso) && isSkin(leg)){
+  document.querySelector('.head').style.background='#f2c59c';
+  document.querySelectorAll('.arm').forEach(a=>a.style.background='#f2c59c');
+  document.querySelectorAll('.leg').forEach(l=>l.style.background='#3f8cff');
+  document.querySelector('.torso').style.background='#2f5aa8';
  }
-
- document.querySelector('.head').style.background="#f2c59c";
- document.querySelectorAll('.arm').forEach(a=>a.style.background="#f2c59c");
- document.querySelectorAll('.leg').forEach(l=>l.style.background="#3f8cff");
- document.querySelector('.torso').style.background="#2f5aa8";
 }
 
 buildPalette();
@@ -353,13 +345,3 @@ buildPalette();
 </body>
 </html>
 ```
-
-### New features:
-
-* Top buttons: Games / Avatar / Settings
-* Clean avatar system
-* Click part → choose color palette
-* Real avatar editor feel
-* More like classic Roblox UI
-* Automatic “noob reset” if all skin tones detected
-* Smooth page switching
