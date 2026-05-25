@@ -62,7 +62,7 @@ body {
 }
 .auth-tab-btn {
     flex: 1;
-    background: none;
+    background: transparent;
     border: none;
     padding: 10px;
     font-weight: 700;
@@ -256,31 +256,29 @@ body {
     <div class="auth-subtitle" id="authSubtitle">Create and explore safely with friends</div>
 
     <div class="auth-tabs">
-        <button class="auth-tab-btn active" id="tabLogin" type="button">Log In</button>
-        <button class="auth-tab-btn" id="tabSignup" type="button">Sign Up</button>
+        <button class="auth-tab-btn active" id="tabLogin" type="button" onclick="switchTab('login')">Log In</button>
+        <button class="auth-tab-btn" id="tabSignup" type="button" onclick="switchTab('signup')">Sign Up</button>
     </div>
 
-    <form id="authForm">
-        <div class="input-group">
-            <label for="usernameInput">Player Name</label>
-            <input type="text" id="usernameInput" required placeholder="Choose your name...">
-            <div class="error-msg" id="profanityError">Username contains offensive/inappropriate words</div>
-        </div>
+    <div class="input-group">
+        <label for="usernameInput">Player Name</label>
+        <input type="text" id="usernameInput" placeholder="Choose your name..." oninput="checkProfanity(this.value)">
+        <div class="error-msg" id="profanityError">Username contains offensive/inappropriate words</div>
+    </div>
 
-        <div class="input-group">
-            <label for="passwordInput">Password</label>
-            <input type="password" id="passwordInput" required placeholder="Keep it safe...">
-        </div>
+    <div class="input-group">
+        <label for="passwordInput">Password</label>
+        <input type="password" id="passwordInput" placeholder="Keep it safe...">
+    </div>
 
-        <div class="input-group">
-            <label for="birthYearInput">What year were you born?</label>
-            <select id="birthYearInput" required>
-                <!-- Filled via Script -->
-            </select>
-        </div>
+    <div class="input-group">
+        <label for="birthYearInput">What year were you born?</label>
+        <select id="birthYearInput">
+            <!-- Filled via Script -->
+        </select>
+    </div>
 
-        <button type="submit" class="submit-btn" id="submitActionBtn">Let's Play</button>
-    </form>
+    <button type="button" class="submit-btn" id="submitActionBtn" onclick="processAuth()">Let's Play</button>
 </div>
 
 <!-- ================= SECURED MAIN PANEL HUB ================= -->
@@ -289,7 +287,7 @@ body {
         <div class="hub-logo">Blocktor</div>
         <div class="hub-user-badge">
             <span id="userProfileName">GuestPlayer</span>
-            <button class="logout-btn" onclick="logoutPlayer()">Log Out</button>
+            <button class="logout-btn" type="button" onclick="logoutPlayer()">Log Out</button>
         </div>
     </header>
 
@@ -306,7 +304,7 @@ body {
                     </div>
                     <div class="chat-input-wrapper">
                         <input type="text" id="chatInputField" placeholder="Type a friendly message...">
-                        <button class="chat-send-btn" onclick="sendLobbyMessage()">Send</button>
+                        <button class="chat-send-btn" type="button" onclick="sendLobbyMessage()">Send</button>
                     </div>
                 </div>
 
@@ -334,7 +332,7 @@ body {
 
 <!-- ================= FUNCTION MECHANICS ENGINE ================= -->
 <script>
-// Local mock data registry logs to hold users permanently in memory
+// Accounts profile log configuration
 let registeredUsersLog = {
     "testplayer": { password: "123", birthYear: 2005, displayName: "TestPlayer" },
     "kidbuilder": { password: "abc", birthYear: 2015, displayName: "KidBuilder" }
@@ -343,18 +341,22 @@ let registeredUsersLog = {
 let currentMode = 'login';
 const badWords = ['nword', 'idiot', 'jerk', 'ass', 'bitch', 'fuck']; 
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Fill birth year selection element loop
-    const birthSelect = document.getElementById('birthYearInput');
-    if(birthSelect) {
-        for (let year = 2026; year >= 1980; year--) {
-            let opt = document.createElement('option');
-            opt.value = year;
-            opt.innerHTML = year;
-            birthSelect.appendChild(opt);
-        }
-        birthSelect.value = 2012; // Default starting index value
-    }
+// Populate the years dropdown right away
+const birthSelect = document.getElementById('birthYearInput');
+for (let year = 2026; year >= 1980; year--) {
+    let opt = document.createElement('option');
+    opt.value = year;
+    opt.innerHTML = year;
+    birthSelect.appendChild(opt);
+}
+birthSelect.value = 2012;
 
+// Tab switcher mechanic
+function switchTab(mode) {
+    currentMode = mode;
     const tabLogin = document.getElementById('tabLogin');
     const tabSignup = document.getElementById('tabSignup');
+    const submitActionBtn = document.getElementById('submitActionBtn');
+    const authSubtitle = document.getElementById('authSubtitle');
+
+    if (mode === 'login') {
