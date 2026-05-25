@@ -255,7 +255,7 @@ body {
 </head> 
 <body>
 
-<!-- System tracking variable to remember state changes -->
+<!-- Hidden interface router parameter tracking variable -->
 <input type="hidden" id="currentAuthMode" value="login">
 
 <!-- ================= ENTRY GATEWAY ================= -->
@@ -263,12 +263,13 @@ body {
     <div class="auth-title">Blocktor</div>
     <div class="auth-subtitle" id="authSubtitle">Welcome back, builder! Ready to explore?</div>
 
-    <!-- Tab selection handles hiding and showing the birth year panel instantly -->
+    <!-- Tab navigation cleanly alters layout parameters, button titles, and conditional fields -->
     <div class="auth-tabs">
-        <button class="auth-tab-btn active" id="tabLogin" type="button" onclick="document.getElementById('tabLogin').className='auth-tab-btn active'; document.getElementById('tabSignup').className='auth-tab-btn'; document.getElementById('submitActionBtn').innerText='Let\'s Play'; document.getElementById('authSubtitle').innerText='Welcome back, builder! Ready to explore?'; document.getElementById('currentAuthMode').value='login'; document.getElementById('birthYearGroup').style.display='none';">Log In</button>
-        <button class="auth-tab-btn" id="tabSignup" type="button" onclick="document.getElementById('tabSignup').className='auth-tab-btn active'; document.getElementById('tabLogin').className='auth-tab-btn'; document.getElementById('submitActionBtn').innerText='Create My Account'; document.getElementById('authSubtitle').innerText='Claim your user name and play safely!'; document.getElementById('currentAuthMode').value='signup'; document.getElementById('birthYearGroup').style.display='block';">Sign Up</button>
+        <button class="auth-tab-btn active" id="tabLogin" type="button" onclick="document.getElementById('tabLogin').className='auth-tab-btn active'; document.getElementById('tabSignup').className='auth-tab-btn'; document.getElementById('submitActionBtn').innerText='Log In'; document.getElementById('authSubtitle').innerText='Welcome back, builder! Ready to explore?'; document.getElementById('currentAuthMode').value='login'; document.getElementById('birthYearGroup').style.display='none';">Log In</button>
+        <button class="auth-tab-btn" id="tabSignup" type="button" onclick="document.getElementById('tabSignup').className='auth-tab-btn active'; document.getElementById('tabLogin').className='auth-tab-btn'; document.getElementById('submitActionBtn').innerText='Sign Up'; document.getElementById('authSubtitle').innerText='Claim your user name and play safely!'; document.getElementById('currentAuthMode').value='signup'; document.getElementById('birthYearGroup').style.display='block';">Sign Up</button>
     </div>
 
+    <!-- Active Instant Word Filter Input Box -->
     <div class="input-group">
         <label for="usernameInput">Player Name</label>
         <input type="text" id="usernameInput" placeholder="Enter your player name..." oninput="var bad=['nword','idiot','jerk','ass','bitch','fuck']; var contains=false; for(var i=0; i<bad.length; i++){ if(this.value.toLowerCase().includes(bad[i])){ contains=true; } } if(contains){ document.getElementById('profanityError').style.display='block'; document.getElementById('submitActionBtn').disabled=true; document.getElementById('submitActionBtn').style.opacity='0.3'; }else{ document.getElementById('profanityError').style.display='none'; document.getElementById('submitActionBtn').disabled=false; document.getElementById('submitActionBtn').style.opacity='1'; }">
@@ -280,7 +281,7 @@ body {
         <input type="password" id="passwordInput" placeholder="Enter your password...">
     </div>
 
-    <!-- Hidden by default on Log In, displays only for new Sign Up registrations -->
+    <!-- Sign Up Age Gate Picker Dropdown (Hides on Log In tab automatically) -->
     <div class="input-group" id="birthYearGroup" style="display: none;">
         <label for="birthYearInput">Birth Year</label>
         <select id="birthYearInput">
@@ -326,4 +327,3 @@ body {
             y = lookup.year;
         }
 
-        document.getElementById('authGate').style.display='none'; 
