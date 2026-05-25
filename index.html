@@ -1,0 +1,241 @@
+# Blocktor Website Script (New Version)
+
+Save this as `index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blocktor</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f1115;
+color:white;
+}
+
+header{
+height:70px;
+background:#181b20;
+border-bottom:2px solid #2a2e35;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 30px;
+position:sticky;
+top:0;
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
+letter-spacing:2px;
+}
+
+.search{
+width:300px;
+padding:10px;
+border:none;
+border-radius:10px;
+background:#2b2f36;
+color:white;
+}
+
+.nav{
+display:flex;
+gap:20px;
+}
+
+.nav a{
+text-decoration:none;
+color:#c7c7c7;
+transition:0.2s;
+}
+
+.nav a:hover{
+color:white;
+}
+
+.hero{
+height:350px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(to bottom,#20242d,#0f1115);
+}
+
+.hero h1{
+font-size:70px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:22px;
+color:#a8a8a8;
+}
+
+.playbtn{
+margin-top:25px;
+padding:15px 40px;
+font-size:22px;
+background:#00b06f;
+border:none;
+border-radius:12px;
+color:white;
+cursor:pointer;
+transition:0.2s;
+}
+
+.playbtn:hover{
+transform:scale(1.05);
+background:#00cf82;
+}
+
+.section{
+padding:40px;
+}
+
+.section h2{
+margin-bottom:20px;
+font-size:35px;
+}
+
+.games{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:#1b1f26;
+border-radius:18px;
+overflow:hidden;
+transition:0.2s;
+cursor:pointer;
+}
+
+.card:hover{
+transform:translateY(-6px);
+}
+
+.card img{
+width:100%;
+height:170px;
+object-fit:cover;
+}
+
+.info{
+padding:15px;
+}
+
+.info h3{
+margin-bottom:10px;
+}
+
+.rating{
+color:#00d084;
+}
+
+.players{
+color:#9a9a9a;
+margin-top:5px;
+}
+
+footer{
+text-align:center;
+padding:30px;
+color:#777;
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">BLOCKTOR</div>
+
+<input class="search" type="text" placeholder="Search games...">
+
+<div class="nav">
+<a href="#">Discover</a>
+<a href="#">Games</a>
+<a href="#">Marketplace</a>
+<a href="#">Avatar</a>
+</div>
+</header>
+
+<section class="hero">
+<h1>BLOCKTOR</h1>
+<p>Play millions of games with friends.</p>
+<button class="playbtn">PLAY NOW</button>
+</section>
+
+<section class="section">
+<h2>Trending Games</h2>
+
+<div class="games">
+
+<div class="card">
+<img src="https://picsum.photos/500/300?1">
+<div class="info">
+<h3>Speed Legends</h3>
+<p class="rating">👍 96%</p>
+<p class="players">12.4K Playing</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/500/300?2">
+<div class="info">
+<h3>Block Battle</h3>
+<p class="rating">👍 91%</p>
+<p class="players">8.1K Playing</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/500/300?3">
+<div class="info">
+<h3>Monster Escape</h3>
+<p class="rating">👍 94%</p>
+<p class="players">15.7K Playing</p>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/500/300?4">
+<div class="info">
+<h3>Cube Simulator</h3>
+<p class="rating">👍 89%</p>
+<p class="players">5.2K Playing</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<footer>
+© 2026 Blocktor
+</footer>
+
+</body>
+</html>
+```
+
+How to use:
+
+1. Open Notepad
+2. Paste the code
+3. Save as `index.html`
+4. Open it in your browser
+5. Edit games and images however you want
