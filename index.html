@@ -256,13 +256,13 @@ body {
     <div class="auth-subtitle" id="authSubtitle">Create and explore safely with friends</div>
 
     <div class="auth-tabs">
-        <button class="auth-tab-btn active" id="tabLogin" type="button" onclick="switchTab('login')">Log In</button>
-        <button class="auth-tab-btn" id="tabSignup" type="button" onclick="switchTab('signup')">Sign Up</button>
+        <button class="auth-tab-btn active" id="tabLogin" type="button">Log In</button>
+        <button class="auth-tab-btn" id="tabSignup" type="button">Sign Up</button>
     </div>
 
     <div class="input-group">
         <label for="usernameInput">Player Name</label>
-        <input type="text" id="usernameInput" placeholder="Choose your name..." oninput="checkProfanity(this.value)">
+        <input type="text" id="usernameInput" placeholder="Choose your name...">
         <div class="error-msg" id="profanityError">Username contains offensive/inappropriate words</div>
     </div>
 
@@ -278,7 +278,7 @@ body {
         </select>
     </div>
 
-    <button type="button" class="submit-btn" id="submitActionBtn" onclick="processAuth()">Let's Play</button>
+    <button type="button" class="submit-btn" id="submitActionBtn">Let's Play</button>
 </div>
 
 <!-- ================= SECURED MAIN PANEL HUB ================= -->
@@ -287,7 +287,7 @@ body {
         <div class="hub-logo">Blocktor</div>
         <div class="hub-user-badge">
             <span id="userProfileName">GuestPlayer</span>
-            <button class="logout-btn" type="button" onclick="logoutPlayer()">Log Out</button>
+            <button class="logout-btn" type="button" id="logoutBtn">Log Out</button>
         </div>
     </header>
 
@@ -304,7 +304,7 @@ body {
                     </div>
                     <div class="chat-input-wrapper">
                         <input type="text" id="chatInputField" placeholder="Type a friendly message...">
-                        <button class="chat-send-btn" type="button" onclick="sendLobbyMessage()">Send</button>
+                        <button class="chat-send-btn" type="button" id="sendChatBtn">Send</button>
                     </div>
                 </div>
 
@@ -332,7 +332,7 @@ body {
 
 <!-- ================= FUNCTION MECHANICS ENGINE ================= -->
 <script>
-// Accounts profile log configuration
+// Local account list memory
 let registeredUsersLog = {
     "testplayer": { password: "123", birthYear: 2005, displayName: "TestPlayer" },
     "kidbuilder": { password: "abc", birthYear: 2015, displayName: "KidBuilder" }
@@ -341,22 +341,19 @@ let registeredUsersLog = {
 let currentMode = 'login';
 const badWords = ['nword', 'idiot', 'jerk', 'ass', 'bitch', 'fuck']; 
 
-// Populate the years dropdown right away
-const birthSelect = document.getElementById('birthYearInput');
-for (let year = 2026; year >= 1980; year--) {
-    let opt = document.createElement('option');
-    opt.value = year;
-    opt.innerHTML = year;
-    birthSelect.appendChild(opt);
-}
-birthSelect.value = 2012;
+// Global isolated functions to run cleanly everywhere
+function launchHub(name, birthYear) {
+    document.getElementById('authGate').style.display = 'none';
+    document.getElementById('gameHub').style.display = 'block';
+    document.getElementById('userProfileName').innerText = name;
 
-// Tab switcher mechanic
-function switchTab(mode) {
-    currentMode = mode;
-    const tabLogin = document.getElementById('tabLogin');
-    const tabSignup = document.getElementById('tabSignup');
-    const submitActionBtn = document.getElementById('submitActionBtn');
-    const authSubtitle = document.getElementById('authSubtitle');
+    const chatActive = document.getElementById('chatActiveSection');
+    const chatBlocked = document.getElementById('chatBlockedSection');
+    const ageStatusLabel = document.getElementById('ageStatusLabel');
 
-    if (mode === 'login') {
+    if (birthYear > 2010) {
+        chatActive.style.display = 'none';
+        chatBlocked.style.display = 'block';
+        ageStatusLabel.innerHTML = "<strong>Child Account Active</strong><br>Features locked: Server Chatting";
+        ageStatusLabel.style.color = "#d63031";
+    } else {
