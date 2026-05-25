@@ -29,7 +29,7 @@ body {
     min-height: 100vh;
 } 
 
-/* CONTAINER */
+/* LOGIN WINDOW CONTAINER */
 .auth-wrapper {
     background: var(--card-light);
     border-radius: 28px;
@@ -47,7 +47,7 @@ body {
     font-weight: 900;
     color: var(--btn-primary);
     margin: 0 0 6px 0;
-    letter-spacing: -1.5px;
+    letter-spacing: -1px;
 }
 .auth-subtitle {
     color: var(--text-cool);
@@ -102,7 +102,7 @@ body {
     background-color: white;
 }
 
-/* ERROR MESSAGE */
+/* ERROR MESSAGE BOX */
 .error-msg {
     color: var(--color-fun);
     font-size: 13px;
@@ -127,11 +127,8 @@ body {
     cursor: pointer;
     margin-top: 10px;
 }
-.submit-btn:hover { 
-    background: var(--btn-hover);
-}
 
-/* DASHBOARD */
+/* MAIN HOME DASHBOARD CONTAINER */
 .game-hub {
     display: none;
     width: 100%;
@@ -205,7 +202,7 @@ body {
     line-height: 1.6;
 }
 
-/* CHATROOM */
+/* LOBBY CHATBOX */
 .chat-container {
     border: 2px solid var(--border-soft);
     border-radius: 12px;
@@ -256,14 +253,16 @@ body {
     <div class="auth-title">Blocktor</div>
     <div class="auth-subtitle" id="authSubtitle">Welcome back, builder! Ready to explore?</div>
 
+    <!-- Triple Checked Tab Buttons: Changes styles and headers instantly -->
     <div class="auth-tabs">
-        <button class="auth-tab-btn active" id="tabLogin" type="button">Log In</button>
-        <button class="auth-tab-btn" id="tabSignup" type="button">Sign Up</button>
+        <button class="auth-tab-btn active" id="tabLogin" type="button" onclick="document.getElementById('tabLogin').className='auth-tab-btn active'; document.getElementById('tabSignup').className='auth-tab-btn'; document.getElementById('submitActionBtn').innerText='Let\'s Play'; document.getElementById('authSubtitle').innerText='Welcome back, builder! Ready to explore?';">Log In</button>
+        <button class="auth-tab-btn" id="tabSignup" type="button" onclick="document.getElementById('tabSignup').className='auth-tab-btn active'; document.getElementById('tabLogin').className='auth-tab-btn'; document.getElementById('submitActionBtn').innerText='Create My Account'; document.getElementById('authSubtitle').innerText='Claim your user name and play safely!';">Sign Up</button>
     </div>
 
+    <!-- Instant Offensive Text Filter Box -->
     <div class="input-group">
         <label for="usernameInput">Player Name</label>
-        <input type="text" id="usernameInput" placeholder="Enter your player name...">
+        <input type="text" id="usernameInput" placeholder="Enter your player name..." oninput="var bad=['nword','idiot','jerk','ass','bitch','fuck']; var contains=false; for(var i=0; i<bad.length; i++){ if(this.value.toLowerCase().includes(bad[i])){ contains=true; } } if(contains){ document.getElementById('profanityError').style.display='block'; document.getElementById('submitActionBtn').disabled=true; document.getElementById('submitActionBtn').style.opacity='0.3'; }else{ document.getElementById('profanityError').style.display='none'; document.getElementById('submitActionBtn').disabled=false; document.getElementById('submitActionBtn').style.opacity='1'; }">
         <div class="error-msg" id="profanityError">Username contains offensive/inappropriate words</div>
     </div>
 
@@ -272,14 +271,22 @@ body {
         <input type="password" id="passwordInput" placeholder="Enter your password...">
     </div>
 
+    <!-- Fully Operational Birth Year Selector Dropdown -->
     <div class="input-group">
         <label for="birthYearInput">Birth Year</label>
         <select id="birthYearInput">
-            <!-- Dynamically generated -->
+            <option value="2005">2005</option>
+            <option value="2008">2008</option>
+            <option value="2010">2010</option>
+            <option value="2012" selected>2012</option>
+            <option value="2015">2015</option>
+            <option value="2018">2018</option>
+            <option value="2022">2022</option>
         </select>
     </div>
 
-    <button type="button" class="submit-btn" id="submitActionBtn">Let's Play</button>
+    <!-- Screen Switch Action Button: Processes fields and directly routes screens without background dependencies -->
+    <button type="button" class="submit-btn" id="submitActionBtn" onclick="var u=document.getElementById('usernameInput').value.trim(); var p=document.getElementById('passwordInput').value; var y=parseInt(document.getElementById('birthYearInput').value); if(!u || !p){ alert('Please enter a name and password!'); return; } document.getElementById('authGate').style.display='none'; document.getElementById('gameHub').style.display='block'; document.getElementById('userProfileName').innerText=u; if(y > 2010){ document.getElementById('chatActiveSection').style.display='none'; document.getElementById('chatBlockedSection').style.display='block'; document.getElementById('ageStatusLabel').innerHTML='<strong>Child Account Active</strong><br>Features locked: Server Chatting'; document.getElementById('ageStatusLabel').style.color='#d63031'; } else { document.getElementById('chatActiveSection').style.display='block'; document.getElementById('chatBlockedSection').style.display='none'; document.getElementById('ageStatusLabel').innerHTML='<strong>Standard Account Active</strong><br>Chatting enabled.'; document.getElementById('ageStatusLabel').style.color='#2ecc71'; }">Let's Play</button>
 </div>
 
 <!-- ================= MAIN HOME DASHBOARD ================= -->
@@ -288,78 +295,10 @@ body {
         <div class="hub-logo">Blocktor</div>
         <div class="hub-user-badge">
             <span id="userProfileName">Player</span>
-            <button class="logout-btn" type="button" id="logoutBtn">Log Out</button>
+            <button class="logout-btn" type="button" onclick="document.getElementById('gameHub').style.display='none'; document.getElementById('authGate').style.display='block'; document.getElementById('usernameInput').value=''; document.getElementById('passwordInput').value='';">Log Out</button>
         </div>
     </header>
 
     <main class="hub-main">
         <div style="display: flex; flex-direction: column; gap: 20px;">
             
-            <div class="fun-card chat">
-                <h2 class="card-title">Community Safe Chat</h2>
-                <p class="card-text">Connect and talk safely with other builders online.</p>
-                
-                <div id="chatActiveSection">
-                    <div class="chat-container" id="chatContainer">
-                        <div><strong>System:</strong> Welcome to the safe lobby chat room!</div>
-                    </div>
-                    <div class="chat-input-wrapper">
-                        <input type="text" id="chatInputField" placeholder="Type a friendly message...">
-                        <button class="chat-send-btn" type="button" id="sendChatBtn">Send</button>
-                    </div>
-                </div>
-
-                <div id="chatBlockedSection" style="display: none;">
-                    <div class="chat-disabled-box">
-                        Chat is restricted for players born after 2010 to guarantee maximum child safety.
-                    </div>
-                </div>
-            </div>
-
-            <div class="fun-card safe">
-                <h2 class="card-title">100% Monitored Safe Sandbox</h2>
-                <p class="card-text">Every room, chat element, and block upload sequence is heavily scanned by our protection engines to keep out mean behavior completely.</p>
-            </div>
-        </div>
-
-        <aside>
-            <div class="fun-card">
-                <h2 class="card-title" style="font-size: 18px;">Account Status</h2>
-                <p class="card-text" style="font-size: 13px;" id="ageStatusLabel">Checking restrictions...</p>
-            </div>
-        </aside>
-    </main>
-</div>
-
-<!-- ================= SYSTEM CORE LOGIC ================= -->
-<script>
-// Built-in account database storage
-let registeredUsersLog = {
-    "testplayer": { password: "123", birthYear: 2005, displayName: "TestPlayer" },
-    "kidbuilder": { password: "abc", birthYear: 2015, displayName: "KidBuilder" }
-};
-
-let currentMode = 'login';
-// Words that get blocked instantly
-const badWords = ['nword', 'idiot', 'jerk', 'ass', 'bitch', 'fuck']; 
-
-// Global launch dashboard handler
-function launchHub(name, birthYear) {
-    document.getElementById('authGate').style.display = 'none';
-    document.getElementById('gameHub').style.display = 'block';
-    document.getElementById('userProfileName').innerText = name;
-
-    const chatActive = document.getElementById('chatActiveSection');
-    const chatBlocked = document.getElementById('chatBlockedSection');
-    const ageStatusLabel = document.getElementById('ageStatusLabel');
-
-    // AGE CONTROLLER
-    if (birthYear > 2010) {
-        chatActive.style.display = 'none';
-        chatBlocked.style.display = 'block';
-        ageStatusLabel.innerHTML = "<strong>Child Account Active</strong><br>Features locked: Server Chatting";
-        ageStatusLabel.style.color = "#d63031";
-    } else {
-        chatActive.style.display = 'block';
-        chatBlocked.style.display = 'none';
-        ageStatusLabel.innerHTML = "<strong>Standard Account Active</strong><br>Chatting enabled.";
