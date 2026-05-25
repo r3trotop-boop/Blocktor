@@ -142,7 +142,7 @@
   }
   .retro-btn:hover { background: #EAEAEA; }
 
-  /* Auth Sub-tabs styling */
+  /* Auth Tabs Layout styling */
   .auth-tabs {
     display: flex;
     gap: 5px;
@@ -189,7 +189,7 @@
     font-size: 11px;
   }
 
-  /* Advanced Avatar Rendering Engine with Short Sleeve Support */
+  /* Character Canvas Structs */
   .avatar-container {
     display: flex;
     gap: 20px;
@@ -216,7 +216,7 @@
   .p-head { width: 26px; height: 26px; top: 8px; left: 42px; }
   .p-torso { width: 42px; height: 44px; top: 34px; left: 34px; }
   
-  /* Split Arm Architecture */
+  /* Short-Sleeve Split Arms Graphics */
   .arm-wrapper { position: absolute; width: 14px; height: 42px; top: 34px; }
   .left-arm-pos { left: 18px; }
   .right-arm-pos { left: 78px; }
@@ -224,15 +224,15 @@
   .sleeve { width: 14px; height: 12px; border: 1px solid #222; border-bottom: none; top: 0; position: absolute; }
   .bare-arm { width: 14px; height: 30px; border: 1px solid #222; top: 12px; position: absolute; }
 
-  /* Leg Elements */
+  /* Leg Layout Elements */
   .p-lleg { width: 20px; height: 46px; top: 78px; left: 34px; }
   .p-rleg { width: 20px; height: 46px; top: 78px; left: 56px; }
 
-  /* App Views Router toggles */
+  /* Router Pages Controllers */
   .view-section { display: none; }
   .view-section.active-view { display: block; }
 
-  /* Catalog Store Items */
+  /* Item Cards Grid */
   .catalog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -257,7 +257,7 @@
     border: 1px solid #DDD;
   }
 
-  /* Game Launcher Overlay */
+  /* Game Overlay Modal Popup box */
   .game-overlay {
     display: none;
     position: fixed;
@@ -280,13 +280,13 @@
 
 <div class="site-container">
 
-  <!-- Header Banner Section -->
+  <!-- Header Branding Banner -->
   <div class="header-banner">
     <div class="logo">BLOCKTOR</div>
     <button class="play-now-btn" onclick="navigateTo('games')">PLAY NOW</button>
   </div>
 
-  <!-- Main System Nav Tabs -->
+  <!-- Main System Top Navigation Tabs Links -->
   <div class="main-navbar">
     <button onclick="navigateTo('home')">My Blocktor</button>
     <span>|</span>
@@ -300,23 +300,23 @@
   <!-- Multi-Column Layout Grid -->
   <div class="main-layout">
     
-    <!-- LEFT CONTENT BODY -->
+    <!-- LEFT FUNCTIONAL CONTENT CHANNEL -->
     <div class="left-column">
       
-      <!-- VIEW 1: HOME PAGE -->
+      <!-- PAGE VIEW 1: GATEWAY HOME PAGE -->
       <div id="page-home" class="view-section active-view">
         <div class="panel">
-          <div class="panel-header">Blocktor Gateway System</div>
+          <div class="panel-header">Blocktor Gateway Portal System</div>
           <div class="panel-body">
             
-            <!-- Auth Selection Dashboard Panels Wrapper -->
+            <!-- Auth Tab Panels Form Selection Switcher Header -->
             <div id="auth-panel-controls">
               <div class="auth-tabs">
                 <button id="tab-login" class="auth-tab-btn active" onclick="switchAuthTab('login')">Log In</button>
                 <button id="tab-signup" class="auth-tab-btn" onclick="switchAuthTab('signup')">Sign Up</button>
               </div>
 
-              <!-- VIEW A: LOGIN FORM SYSTEM CONTAINER -->
+              <!-- VIEW A: SIGN IN INTERFACE BOX -->
               <div id="subview-login" class="auth-subview active">
                 <div class="auth-field-block">
                   <label>Username:</label>
@@ -330,7 +330,7 @@
                 <div id="login-error-msg" class="error-text" style="display:none;"></div>
               </div>
 
-              <!-- VIEW B: SIGNUP REGISTRATION SYSTEM CONTAINER -->
+              <!-- VIEW B: ACCOUNT CREATION FORM LAYOUT CONTAINER -->
               <div id="subview-signup" class="auth-subview">
                 <div class="auth-field-block">
                   <label>Create Username:</label>
@@ -345,28 +345,23 @@
               </div>
             </div>
 
-            <!-- Logged In Profile Panel Interface -->
+            <!-- DYNAMIC CONTROL PANEL: LOGGED IN PROFILE SIDEBAR REPLACEMENT -->
             <div id="profile-dashboard" class="avatar-container" style="display: none;">
               
-              <!-- Character Canvas Structure -->
+              <!-- Character Canvas Structure Short Sleeve Engine Layout Node -->
               <div class="avatar-frame">
                 <div class="part p-head" id="av-head"></div>
                 <div class="part p-torso" id="av-torso"></div>
                 
-                <!-- Left Arm Set -->
+                <!-- Left Arm Component Split -->
                 <div class="arm-wrapper left-arm-pos">
                   <div class="sleeve" id="av-larm-sleeve"></div>
                   <div class="bare-arm" id="av-larm-bare"></div>
                 </div>
 
-                <!-- Right Arm Set -->
+                <!-- Right Arm Component Split -->
                 <div class="arm-wrapper right-arm-pos">
                   <div class="sleeve" id="av-rarm-sleeve"></div>
                   <div class="bare-arm" id="av-rarm-bare"></div>
                 </div>
 
-                <div class="part p-lleg" id="av-lleg"></div>
-                <div class="part p-rleg" id="av-rleg"></div>
-              </div>
-
-              <div>
