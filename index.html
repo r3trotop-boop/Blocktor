@@ -1,241 +1,441 @@
-# Blocktor Website Script (New Version)
+# Blocktor Website Script (Classic Roblox Style)
 
 Save this as `index.html`
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blocktor</title>
-
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
 body{
-background:#0f1115;
-color:white;
+background:#dfe7ef;
+font-family:Tahoma;
+margin:0;
 }
 
-header{
-height:70px;
-background:#181b20;
-border-bottom:2px solid #2a2e35;
+.topbar{
+background:#2f5aa8;
+height:60px;
+border-bottom:4px solid #1e3d73;
 display:flex;
 align-items:center;
-justify-content:space-between;
-padding:0 30px;
-position:sticky;
-top:0;
-}
-
-.logo{
-font-size:32px;
-font-weight:bold;
-letter-spacing:2px;
-}
-
-.search{
-width:300px;
-padding:10px;
-border:none;
-border-radius:10px;
-background:#2b2f36;
+padding-left:20px;
 color:white;
+font-size:34px;
+font-weight:bold;
 }
 
 .nav{
-display:flex;
-gap:20px;
+background:#f2f2f2;
+padding:10px;
+border-bottom:2px solid #c7c7c7;
 }
 
-.nav a{
-text-decoration:none;
-color:#c7c7c7;
-transition:0.2s;
+.nav button{
+background:white;
+border:1px solid #999;
+padding:8px 15px;
+margin-right:10px;
+cursor:pointer;
+font-weight:bold;
 }
 
-.nav a:hover{
-color:white;
+.nav button:hover{
+background:#e8e8e8;
 }
 
-.hero{
-height:350px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:linear-gradient(to bottom,#20242d,#0f1115);
+.welcome{
+background:white;
+width:90%;
+margin:20px auto;
+padding:20px;
+border:1px solid #bdbdbd;
 }
 
-.hero h1{
-font-size:70px;
-margin-bottom:15px;
-}
-
-.hero p{
-font-size:22px;
-color:#a8a8a8;
+.welcome h1{
+margin-top:0;
+color:#2f5aa8;
 }
 
 .playbtn{
-margin-top:25px;
-padding:15px 40px;
-font-size:22px;
-background:#00b06f;
-border:none;
-border-radius:12px;
+background:#39b54a;
 color:white;
+border:none;
+padding:12px 25px;
+font-size:20px;
+font-weight:bold;
 cursor:pointer;
-transition:0.2s;
+border-radius:4px;
 }
 
 .playbtn:hover{
-transform:scale(1.05);
-background:#00cf82;
-}
-
-.section{
-padding:40px;
-}
-
-.section h2{
-margin-bottom:20px;
-font-size:35px;
+background:#45cc57;
 }
 
 .games{
+width:90%;
+margin:auto;
+}
+
+.games h2{
+color:#2f5aa8;
+}
+
+.grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
 }
 
-.card{
-background:#1b1f26;
-border-radius:18px;
-overflow:hidden;
-transition:0.2s;
-cursor:pointer;
+.game{
+background:white;
+border:1px solid #bcbcbc;
+padding:10px;
+text-align:center;
 }
 
-.card:hover{
-transform:translateY(-6px);
-}
-
-.card img{
+.game img{
 width:100%;
-height:170px;
+height:140px;
 object-fit:cover;
+border:1px solid #999;
 }
 
-.info{
-padding:15px;
-}
-
-.info h3{
-margin-bottom:10px;
+.game h3{
+margin:10px 0 5px 0;
 }
 
 .rating{
-color:#00d084;
+color:green;
+font-weight:bold;
 }
 
-.players{
-color:#9a9a9a;
-margin-top:5px;
-}
-
-footer{
+.footer{
+margin-top:30px;
+background:#d4d4d4;
+padding:15px;
 text-align:center;
-padding:30px;
-color:#777;
+border-top:2px solid #b0b0b0;
 }
 </style>
 </head>
 <body>
 
-<header>
-<div class="logo">BLOCKTOR</div>
-
-<input class="search" type="text" placeholder="Search games...">
+<div class="topbar">
+BLOCKTOR
+</div>
 
 <div class="nav">
-<a href="#">Discover</a>
-<a href="#">Games</a>
-<a href="#">Marketplace</a>
-<a href="#">Avatar</a>
+<button>Games</button>
+<button>Catalog</button>
+<button>People</button>
+<button>Forum</button>
+<button>Profile</button>
 </div>
-</header>
 
-<section class="hero">
-<h1>BLOCKTOR</h1>
-<p>Play millions of games with friends.</p>
+<div class="welcome">
+<h1>Welcome to Blocktor!</h1>
+<p>Play free online games and build cool worlds with friends.</p>
+<br>
 <button class="playbtn">PLAY NOW</button>
-</section>
-
-<section class="section">
-<h2>Trending Games</h2>
+</div>
 
 <div class="games">
+<h2>Featured Games</h2>
 
-<div class="card">
-<img src="https://picsum.photos/500/300?1">
-<div class="info">
-<h3>Speed Legends</h3>
-<p class="rating">👍 96%</p>
-<p class="players">12.4K Playing</p>
-</div>
-</div>
+<div class="grid">
 
-<div class="card">
-<img src="https://picsum.photos/500/300?2">
-<div class="info">
-<h3>Block Battle</h3>
-<p class="rating">👍 91%</p>
-<p class="players">8.1K Playing</p>
-</div>
+<div class="game">
+<img src="https://picsum.photos/300/200?1">
+<h3>Crossroads Battle</h3>
+<p class="rating">95% Like</p>
 </div>
 
-<div class="card">
-<img src="https://picsum.photos/500/300?3">
-<div class="info">
-<h3>Monster Escape</h3>
-<p class="rating">👍 94%</p>
-<p class="players">15.7K Playing</p>
-</div>
+<div class="game">
+<img src="https://picsum.photos/300/200?2">
+<h3>Classic Obby</h3>
+<p class="rating">91% Like</p>
 </div>
 
-<div class="card">
-<img src="https://picsum.photos/500/300?4">
-<div class="info">
-<h3>Cube Simulator</h3>
-<p class="rating">👍 89%</p>
-<p class="players">5.2K Playing</p>
+<div class="game">
+<img src="https://picsum.photos/300/200?3">
+<h3>Zombie Blocks</h3>
+<p class="rating">89% Like</p>
 </div>
+
+<div class="game">
+<img src="https://picsum.photos/300/200?4">
+<h3>Brick Tycoon</h3>
+<p class="rating">97% Like</p>
 </div>
 
 </div>
-</section>
+</div>
 
-<footer>
+<div class="footer">
 © 2026 Blocktor
-</footer>
+</div>
 
 </body>
 </html>
 ```
 
-How to use:
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blocktor</title>
+<style>
+body{
+margin:0;
+font-family:Verdana;
+background:#ececec;
+}
 
-1. Open Notepad
-2. Paste the code
-3. Save as `index.html`
-4. Open it in your browser
-5. Edit games and images however you want
+.topbar{
+height:38px;
+background:#2c4d75;
+border-bottom:1px solid #17304f;
+display:flex;
+align-items:center;
+padding-left:15px;
+color:white;
+font-size:28px;
+font-weight:bold;
+}
+
+.navbar{
+height:35px;
+background:#f5f5f5;
+border-bottom:1px solid #bcbcbc;
+display:flex;
+align-items:center;
+padding-left:10px;
+}
+
+.navbar button{
+height:25px;
+margin-right:8px;
+padding:0 15px;
+border:1px solid #999;
+background:linear-gradient(#ffffff,#dadada);
+font-weight:bold;
+cursor:pointer;
+}
+
+.navbar button:hover{
+background:linear-gradient(#ffffff,#cfcfcf);
+}
+
+.layout{
+display:flex;
+width:95%;
+margin:15px auto;
+gap:15px;
+}
+
+.sidebar{
+width:180px;
+background:white;
+border:1px solid #b7b7b7;
+padding:10px;
+height:500px;
+}
+
+.sidebar h3{
+margin-top:0;
+color:#2c4d75;
+font-size:18px;
+}
+
+.sidebar p{
+font-size:14px;
+margin:8px 0;
+cursor:pointer;
+}
+
+.sidebar p:hover{
+text-decoration:underline;
+}
+
+.main{
+flex:1;
+}
+
+.welcome{
+background:white;
+border:1px solid #b7b7b7;
+padding:15px;
+margin-bottom:15px;
+}
+
+.welcome h1{
+margin-top:0;
+color:#2c4d75;
+}
+
+.playbtn{
+background:#39b54a;
+color:white;
+border:1px solid #2d8d3a;
+padding:10px 20px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.gamesbox{
+background:white;
+border:1px solid #b7b7b7;
+padding:15px;
+}
+
+.gamesbox h2{
+margin-top:0;
+color:#2c4d75;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+gap:15px;
+}
+
+.game{
+border:1px solid #c2c2c2;
+background:#f8f8f8;
+padding:8px;
+text-align:center;
+}
+
+.game img{
+width:100%;
+height:120px;
+object-fit:cover;
+border:1px solid #888;
+background:white;
+}
+
+.game h3{
+font-size:15px;
+margin:8px 0 4px 0;
+}
+
+.rating{
+color:green;
+font-size:13px;
+font-weight:bold;
+}
+
+.players{
+font-size:12px;
+color:#666;
+}
+
+.footer{
+margin-top:20px;
+padding:15px;
+text-align:center;
+background:#dcdcdc;
+border-top:1px solid #b0b0b0;
+font-size:13px;
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+BLOCKTOR
+</div>
+
+<div class="navbar">
+<button>Games</button>
+<button>Catalog</button>
+<button>People</button>
+<button>Forum</button>
+<button>Builders Club</button>
+<button>Profile</button>
+</div>
+
+<div class="layout">
+
+<div class="sidebar">
+<h3>Navigation</h3>
+<p>Home</p>
+<p>My Profile</p>
+<p>Messages</p>
+<p>Friends</p>
+<p>Avatar</p>
+<p>Inventory</p>
+<p>Groups</p>
+<p>Trade</p>
+<p>Blog</p>
+</div>
+
+<div class="main">
+
+<div class="welcome">
+<h1>Welcome to Blocktor!</h1>
+<p>The free online building game where you can create anything.</p>
+<br>
+<button class="playbtn">PLAY NOW</button>
+</div>
+
+<div class="gamesbox">
+<h2>Featured Games</h2>
+
+<div class="grid">
+
+<div class="game">
+<img src="https://picsum.photos/250/180?1">
+<h3>Crossroads</h3>
+<p class="rating">95% Positive</p>
+<p class="players">1,245 Players</p>
+</div>
+
+<div class="game">
+<img src="https://picsum.photos/250/180?2">
+<h3>Classic Obby</h3>
+<p class="rating">91% Positive</p>
+<p class="players">847 Players</p>
+</div>
+
+<div class="game">
+<img src="https://picsum.photos/250/180?3">
+<h3>Brick Warfare</h3>
+<p class="rating">97% Positive</p>
+<p class="players">2,932 Players</p>
+</div>
+
+<div class="game">
+<img src="https://picsum.photos/250/180?4">
+<h3>Zombie Town</h3>
+<p class="rating">89% Positive</p>
+<p class="players">623 Players</p>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="footer">
+© 2026 Blocktor
+</div>
+
+</body>
+</html>
+```
+
+This version is heavily inspired by old Roblox websites from around 2009-2012:
+
+* Classic blue header
+* Builders Club button
+* Old sidebar navigation
+* Gray background
+* Simple box layout
+* Retro game cards
+* Classic web styling
+* Old Roblox page structure
