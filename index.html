@@ -1,318 +1,388 @@
-# Blocktor Website Script (Clean Roblox-Style + Popup Avatar Editor)
-
-Save this as `index.html`
-
-```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blocktor</title>
 <style>
-body{
-margin:0;
-font-family:Verdana;
-background:#e9e9e9;
-}
+  :root {
+    --primary-color: #2c4d75;
+    --primary-dark: #17304f;
+    --accent-green: #39b54a;
+    --accent-green-hover: #2d8d3a;
+    --bg-light: #e9e9e9;
+    --border-color: #bbb;
+  }
 
-.topbar{
-height:40px;
-background:#2c4d75;
-color:white;
-display:flex;
-align-items:center;
-padding-left:15px;
-font-size:26px;
-font-weight:bold;
-border-bottom:2px solid #17304f;
-}
+  body {
+    margin: 0;
+    font-family: Verdana, sans-serif;
+    background: var(--bg-light);
+    color: #333;
+  }
 
-.navbar{
-display:flex;
-gap:8px;
-padding:8px;
-background:#f5f5f5;
-border-bottom:1px solid #bbb;
-}
+  /* Header */
+  .topbar {
+    height: 45px;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 3px solid var(--primary-dark);
+  }
 
-.navbar button{
-padding:6px 14px;
-border:1px solid #888;
-background:linear-gradient(#fff,#ddd);
-cursor:pointer;
-font-weight:bold;
-}
+  /* Navigation */
+  .navbar {
+    display: flex;
+    gap: 8px;
+    padding: 8px 15px;
+    background: #f5f5f5;
+    border-bottom: 1px solid var(--border-color);
+  }
 
-.navbar button:hover{
-background:linear-gradient(#fff,#cfcfcf);
-}
+  .navbar button {
+    padding: 6px 14px;
+    border: 1px solid #888;
+    background: linear-gradient(#fff, #ddd);
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 3px;
+  }
 
-.layout{
-display:flex;
-width:95%;
-margin:15px auto;
-gap:15px;
-}
+  .navbar button:hover {
+    background: linear-gradient(#fff, #cfcfcf);
+  }
 
-.sidebar{
-width:220px;
-background:white;
-border:1px solid #bbb;
-padding:10px;
-height:520px;
-}
+  /* Layout */
+  .layout {
+    display: flex;
+    max-width: 1200px;
+    margin: 15px auto;
+    gap: 15px;
+    padding: 0 15px;
+  }
 
-.avatarPreview{
-width:110px;
-height:150px;
-background:#dcdcdc;
-border:2px solid #777;
-margin:auto;
-position:relative;
-}
+  /* Sidebar Profile Section */
+  .sidebar {
+    width: 220px;
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
 
-.part{
-position:absolute;
-border:2px solid #444;
-}
+  .username {
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+  }
 
-.head{width:42px;height:42px;border-radius:50%;top:10px;left:34px;}
-.torso{width:55px;height:55px;top:55px;left:27px;}
-.arm{width:18px;height:48px;top:55px;}
-.leftArm{left:6px;}
-.rightArm{left:86px;}
-.leg{width:20px;height:50px;top:110px;}
-.leftLeg{left:30px;}
-.rightLeg{left:60px;}
+  /* Avatar Character Render */
+  .avatarPreview {
+    width: 120px;
+    height: 170px;
+    background: #dcdcdc;
+    border: 2px solid #777;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
 
-.sidebar p{
-font-size:14px;
-cursor:pointer;
-margin:6px 0;
-}
+  .part {
+    position: absolute;
+    border: 2px solid #444;
+    background: #f0f0f0;
+    box-sizing: border-box;
+    transition: background 0.2s ease;
+  }
 
-.sidebar p:hover{text-decoration:underline;}
+  .head { width: 36px; height: 36px; border-radius: 50%; top: 15px; left: 42px; }
+  .torso { width: 56px; height: 56px; top: 53px; left: 32px; }
+  .arm { width: 18px; height: 52px; top: 53px; }
+  .leftArm { left: 12px; }
+  .rightArm { left: 90px; }
+  .leg { width: 20px; height: 54px; top: 111px; }
+  .leftLeg { left: 38px; }
+  .rightLeg { left: 62px; }
 
-.main{flex:1;}
+  .edit-avatar-btn {
+    width: 100%;
+    padding: 8px;
+    background: #f0f0f0;
+    border: 1px solid #aaa;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+  }
 
-.page{display:none;}
-.page.active{display:block;}
+  .edit-avatar-btn:hover {
+    background: #e0e0e0;
+  }
 
-.box{
-background:white;
-border:1px solid #bbb;
-padding:15px;
-margin-bottom:15px;
-}
+  /* Content Windows */
+  .main {
+    flex: 1;
+  }
 
-.playbtn{
-background:#39b54a;
-color:white;
-border:1px solid #2d8d3a;
-padding:10px 18px;
-font-weight:bold;
-cursor:pointer;
-}
+  .page {
+    display: none;
+  }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-gap:10px;
-}
+  .page.active {
+    display: block;
+  }
 
-.game{
-background:#f8f8f8;
-border:1px solid #ccc;
-padding:10px;
-text-align:center;
-}
+  .box {
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    margin-bottom: 15px;
+  }
 
-.modal{
-display:none;
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.5);
-}
+  .box h2 {
+    margin-top: 0;
+  }
 
-.modalContent{
-background:white;
-width:420px;
-margin:80px auto;
-padding:15px;
-border-radius:6px;
-}
+  .playbtn {
+    background: var(--accent-green);
+    color: white;
+    border: 1px solid var(--accent-green-hover);
+    padding: 10px 22px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+  }
 
-.colorGrid{
-display:grid;
-grid-template-columns:repeat(6,1fr);
-gap:5px;
-margin-top:10px;
-}
+  .playbtn:hover {
+    background: var(--accent-green-hover);
+  }
 
-.color{
-width:25px;
-height:25px;
-cursor:pointer;
-border:1px solid #333;
-}
+  /* Grid Catalogs */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+  }
 
-button.small{
-padding:5px 8px;
-margin:2px;
-}
+  .game, .item {
+    background: #f8f8f8;
+    border: 1px solid #ccc;
+    padding: 15px;
+    text-align: center;
+    border-radius: 4px;
+  }
 
-.footer{
-text-align:center;
-padding:15px;
-background:#ddd;
-border-top:1px solid #bbb;
-font-size:13px;
-}
+  .game-thumb, .item-thumb {
+    width: 100%;
+    height: 100px;
+    background: #ddd;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 12px;
+  }
+
+  /* Popups / Modals */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .modalContent {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: relative;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+    color: #666;
+  }
+
+  .color-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .color-dot {
+    height: 40px;
+    border: 1px solid #888;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .color-dot:hover {
+    transform: scale(1.05);
+  }
+
+  .editor-selectors {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+
+  .editor-selectors select {
+    flex: 1;
+    padding: 5px;
+  }
 </style>
 </head>
 <body>
 
-<div class="topbar">BLOCKTOR</div>
+  <!-- Top bar Header -->
+  <div class="topbar">Blocktor</div>
 
-<div class="navbar">
-<button onclick="show('games')">Games</button>
-<button onclick="openAvatar()">Avatar</button>
-<button onclick="show('settings')">Settings</button>
-</div>
+  <!-- Navigation Bar Links -->
+  <div class="navbar">
+    <button onclick="switchPage('home')">Home</button>
+    <button onclick="switchPage('games')">Games</button>
+    <button onclick="switchPage('catalog')">Catalog</button>
+  </div>
 
-<div class="layout">
+  <!-- Main Split Layout -->
+  <div class="layout">
+    
+    <!-- Left Profile Side Panel -->
+    <div class="sidebar">
+      <p class="username">Player1</p>
+      
+      <!-- Character View Panel -->
+      <div class="avatarPreview">
+        <div class="part head" id="preview-head"></div>
+        <div class="part torso" id="preview-torso"></div>
+        <div class="part arm leftArm" id="preview-leftArm"></div>
+        <div class="part arm rightArm" id="preview-rightArm"></div>
+        <div class="part leg leftLeg" id="preview-leftLeg"></div>
+        <div class="part leg rightLeg" id="preview-rightLeg"></div>
+      </div>
 
-<div class="sidebar">
+      <button class="edit-avatar-btn" onclick="openAvatarModal()">Edit Avatar</button>
+    </div>
 
-<div class="avatarPreview">
-<div class="part head" id="head"></div>
-<div class="part torso" id="torso"></div>
-<div class="part arm leftArm" id="leftArm"></div>
-<div class="part arm rightArm" id="rightArm"></div>
-<div class="part leg leftLeg" id="leftLeg"></div>
-<div class="part leg rightLeg" id="rightLeg"></div>
-</div>
+    <!-- Right Functional Page Container -->
+    <div class="main">
+      
+      <!-- Page 1: Dashboard Home -->
+      <div id="page-home" class="page active">
+        <div class="box">
+          <h2>Welcome back, Blocktorian!</h2>
+          <p>Check out the latest updates or jump straight into a game build.</p>
+          <button class="playbtn" onclick="switchPage('games')">See Games</button>
+        </div>
+      </div>
 
-<p><b>Player</b></p>
-<p onclick="show('games')">Home</p>
-<p onclick="openAvatar()">Edit Avatar</p>
-<p onclick="show('settings')">Settings</p>
+      <!-- Page 2: Game Hub Catalog -->
+      <div id="page-games" class="page">
+        <div class="box">
+          <h2>Popular Games</h2>
+          <div class="grid">
+            <div class="game">
+              <div class="game-thumb">No Image</div>
+              <strong>Crossroads Classic</strong>
+              <p style="font-size:12px; color:#666;">Active: 1,240</p>
+            </div>
+            <div class="game">
+              <div class="game-thumb">No Image</div>
+              <strong>Sword Fight Arena</strong>
+              <p style="font-size:12px; color:#666;">Active: 890</p>
+            </div>
+            <div class="game">
+              <div class="game-thumb">No Image</div>
+              <strong>Paintball Chaos</strong>
+              <p style="font-size:12px; color:#666;">Active: 412</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-</div>
+      <!-- Page 3: Avatar Shop Asset Catalog -->
+      <div id="page-catalog" class="page">
+        <div class="box">
+          <h2>Avatar Shop</h2>
+          <div class="grid">
+            <div class="item">
+              <div class="item-thumb">Hat</div>
+              <strong>Fedora</strong>
+              <p style="color: #2d8d3a; font-weight: bold;">50 BuX</p>
+            </div>
+            <div class="item">
+              <div class="item-thumb">Face</div>
+              <strong>Chill Smile</strong>
+              <p style="color: #2d8d3a; font-weight: bold;">Free</p>
+            </div>
+            <div class="item">
+              <div class="item-thumb">Gear</div>
+              <strong>Laser Sword</strong>
+              <p style="color: #2d8d3a; font-weight: bold;">150 BuX</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<div class="main">
+    </div>
+  </div>
 
-<div id="games" class="page active">
-<div class="box">
-<h2>Welcome to Blocktor</h2>
-<p>Play and explore games.</p>
-<button class="playbtn">PLAY</button>
-</div>
+  <!-- Interactive Pop-up Color Customizer Custom Component Modal -->
+  <div class="modal" id="avatarModal">
+    <div class="modalContent">
+      <span class="close-btn" onclick="closeAvatarModal()">&times;</span>
+      <h3>Custom Character Palette</h3>
+      
+      <div class="editor-selectors">
+        <label for="body-part-select">Target Part: </label>
+        <select id="body-part-select">
+          <option value="head">Head</option>
+          <option value="torso">Torso</option>
+          <option value="leftArm">Left Arm</option>
+          <option value="rightArm">Right Arm</option>
+          <option value="leftLeg">Left Leg</option>
+          <option value="rightLeg">Right Leg</option>
+        </select>
+      </div>
 
-<div class="box">
-<h3>Games</h3>
-<div class="grid">
-<div class="game">Obby</div>
-<div class="game">Brick Wars</div>
-<div class="game">Zombie Town</div>
-<div class="game">Crossroads</div>
-</div>
-</div>
-</div>
+      <p style="font-size: 13px; color:#666; margin-bottom:5px;">Select Palette Tint:</p>
+      <div class="color-picker-grid">
+        <!-- Palette Choice Node Array -->
+        <div class="color-dot" style="background: #f5cd30;" onclick="applyColor('#f5cd30')"></div>
+        <div class="color-dot" style="background: #a34b4b;" onclick="applyColor('#a34b4b')"></div>
+        <div class="color-dot" style="background: #4b74a3;" onclick="applyColor('#4b74a3')"></div>
+        <div class="color-dot" style="background: #4ba35a;" onclick="applyColor('#4ba35a')"></div>
+        <div class="color-dot" style="background: #ffffff;" onclick="applyColor('#ffffff')"></div>
+        <div class="color-dot" style="background: #1b1b1b;" onclick="applyColor('#1b1b1b')"></div>
+        <div class="color-dot" style="background: #ff7f27;" onclick="applyColor('#ff7f27')"></div>
+        <div class="color-dot" style="background: #a34ba3;" onclick="applyColor('#a34ba3')"></div>
+        <div class="color-dot" style="background: #00a2e8;" onclick="applyColor('#00a2e8')"></div>
+        <div class="color-dot" style="background: #7f7f7f;" onclick="applyColor('#7f7f7f')"></div>
+      </div>
+    </div>
+  </div>
 
-<div id="settings" class="page">
-<div class="box">
-<h2>Settings</h2>
-<p>No settings yet.</p>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="footer">© 2026 Blocktor</div>
-
-<!-- AVATAR MODAL -->
-<div class="modal" id="avatarModal">
-<div class="modalContent">
-<h2>Avatar Editor</h2>
-<p>Select part:</p>
-<button class="small" onclick="selectPart('head')">Head</button>
-<button class="small" onclick="selectPart('torso')">Torso</button>
-<button class="small" onclick="selectPart('leftArm')">Left Arm</button>
-<button class="small" onclick="selectPart('rightArm')">Right Arm</button>
-<button class="small" onclick="selectPart('leftLeg')">Left Leg</button>
-<button class="small" onclick="selectPart('rightLeg')">Right Leg</button>
-
-<p>Colors:</p>
-<div class="colorGrid" id="colors"></div>
-
-<br>
-<button onclick="closeAvatar()">Close</button>
-</div>
-</div>
-
-<script>
-
-let selectedPart='head';
-
-const colors=[];
-for(let i=0;i<24;i++) colors.push('hsl('+(i*15)+',70%,60%)');
-
-const skin=['#f2c59c','#d8a373','#b97a56','#8d5524'];
-
-function show(id){
- document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
- document.getElementById(id).classList.add('active');
-}
-
-function openAvatar(){
- document.getElementById('avatarModal').style.display='block';
-}
-
-function closeAvatar(){
- document.getElementById('avatarModal').style.display='none';
- checkNoob();
-}
-
-function selectPart(p){ selectedPart=p; }
-
-function build(){
- const c=document.getElementById('colors');
- colors.forEach(col=>{
-  let d=document.createElement('div');
-  d.className='color';
-  d.style.background=col;
-  d.onclick=()=>apply(col);
-  c.appendChild(d);
- });
-}
-
-function apply(color){
- document.getElementById(selectedPart).style.background=color;
- checkNoob();
-}
-
-function checkNoob(){
- let parts=['head','torso','leftArm','rightArm','leftLeg','rightLeg'];
- let all=true;
-
- parts.forEach(p=>{
-  let c=document.getElementById(p).style.background;
-  if(!skin.includes(rgbToHex(c))) all=false;
- });
-
- if(all){
-  document.getElementById('head').style.background='#ffcc00';
-  document.getElementById('torso').style.background='#2f5aa8';
-  document.getElementById('leftArm').style.background='#ffcc00';
-  document.getElementById('rightArm').style.background='#ffcc00';
-  document.getElementById('leftLeg').style.background='#00aa00';
-  document.getElementById('rightLeg').style.background='#00aa00';
- }
-}
-
-function rgbToHex(rgb){
- if(!rgb) return '';
- let m=rgb.match(/\d+/g);
-```
+  <script>
+    // Navigation Routing System Engine
+    function switchPage(pageId) {
